@@ -57,17 +57,16 @@ good foundation for expansion is a good thing to keep in the
 back of our minds when coding).
 ----Also need to clarify "tilling."
 =============================================================
-fristL -- 2018-01-__ __:__
+zaneW -- 2018-01-09 13:50
 -------------------------------------------------------------
-what you have done
+-added to login/register html files
+-started making html file for home page
 =============================================================
-fristL -- 2018-01-__ __:__
+weiwenZ -- 2018-01-09 15:32
 -------------------------------------------------------------
-what you have done
-=============================================================
-fristL -- 2018-01-__ __:__
--------------------------------------------------------------
-what you have done
+-deleted the added foundation.css files.
+-we should be using cdn. I sent the line to add to our html files
+in the chat.
 =============================================================
 fristL -- 2018-01-__ __:__
 -------------------------------------------------------------
