@@ -57,17 +57,18 @@ good foundation for expansion is a good thing to keep in the
 back of our minds when coding).
 ----Also need to clarify "tilling."
 =============================================================
-fristL -- 2018-01-__ __:__
+zaneW, weiZ -- 2018-01-09 13:50
 -------------------------------------------------------------
-what you have done
+-added to login/register html files
+-started making html file for home page
 =============================================================
-fristL -- 2018-01-__ __:__
+derekS -- 2018-01-09 13:52
 -------------------------------------------------------------
-what you have done
+-started making html file for farm layout/grid
 =============================================================
-fristL -- 2018-01-__ __:__
+weiZ -- 2018-01-09 13:53
 -------------------------------------------------------------
-what you have done
+-started making python file for SQLite databases
 =============================================================
 fristL -- 2018-01-__ __:__
 -------------------------------------------------------------
