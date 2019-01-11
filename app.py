@@ -50,7 +50,7 @@ def logout():
 
 @app.route("/viewprofile")
 def view():
-    return render_template('profile.html', user=session['current_user'], farm="Farm A", crops="Corn", land="9", cash="180")
+    return render_template('profile.html', user=session['current_user'], farm=silo.getFarm('current_user'), crops="Corn", land="9", cash="180")
 
 @app.route("/createFarm", methods=['POST'])
 def createFarm():

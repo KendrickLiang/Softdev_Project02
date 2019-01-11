@@ -71,3 +71,16 @@ def getFarm(user):
     db.commit()
     db.close()
     return farm
+
+def getFarmName(user):
+    if not haveFarm(user):
+        return ''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("SELECT farm_name FROM farms where owner = (?);", (user))
+    farmname = c.fetchone
+    db.commit()
+    db.close()
+    return farmname
+    
+        
