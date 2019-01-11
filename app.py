@@ -13,7 +13,7 @@ app.secret_key = os.urandom(64)
 def index():
     print(session)
     if 'current_user' in session:
-        return render_template('home.html', user=session['current_user'])
+        return render_template('home.html', farm="Sample", message='WELCOME '+session['current_user'])
     return render_template('login.html', title="Login")
 
 @app.route("/authentication", methods=['POST'])
@@ -38,7 +38,7 @@ def register():
     '''
     if silo.addUser(request.form['username'].strip(), request.form['password'].strip()):
         session['current_user'] = request.form['username']
-        return render_template('home.html', message='WELCOME'+session['current_user'])
+        return render_template('home.html', farm="Sample", message='WELCOME'+session['current_user'])
     flash("Invalid Username")
     return redirect("/")
 
@@ -47,6 +47,9 @@ def logout():
     session.pop('current_user')
     return redirect("/")
 
+@app.route("/viewprofile")
+def view():
+    return render_template('profile.html', user=session['current_user'], farm="Farm A", crops="Corn", land="9", cash="180")
 if __name__ == "__main__":
     app.debug = True
     app.run()

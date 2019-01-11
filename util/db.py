@@ -17,7 +17,7 @@ def createTables():
 def addUser(user, password):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("SELECT EXISTS (SELECT 1 FROM users where username = (?) );", (user))
+    c.execute("SELECT EXISTS (SELECT 1 FROM users where username = (?) );", (user,))
     if c.fetchone()[0]:
         return False
     c.execute("INSERT INTO users values (?, ?, ?, ?);", (user, password, 0, ''))
