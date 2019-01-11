@@ -13,7 +13,7 @@ app.secret_key = os.urandom(64)
 def index():
     print(session)
     if 'current_user' in session:
-        return render_template('home.html', farm="Sample", message='WELCOME '+session['current_user'])
+        return render_template('home.html', farm="Sample", message='WELCOME '+session['current_user'], row=10, col=10)
     return render_template('login.html', title="Login")
 
 @app.route("/authentication", methods=['POST'])
