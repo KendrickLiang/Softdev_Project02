@@ -1,23 +1,19 @@
-<!DOCTYPE html>
+{% extends "template.html" %}
+{% block title %} {{ username }} {% endblock %}
+{% block body %}
 
-<html>
-    <head>
-        <title> {{ username }} </title>
-    </head>
-    <body>
-        Username: {{ user }}
-        <br>
-        Farms Owned: <form action="/">
-	    <button type="submit"> {{farm}} </button>
-        </form>
-        <br>
-        Crops Planted: {{ crops }}
-        <br>
-        Total Farmland: {{ land }}
-        <br>
-        Total Crops Owned: {{ crops }}
-        <br>
-        Total Cash: {{ cash }}
-	
-    </body>
-</html>
+    Username: {{ user }}
+    <br>
+    Farms Owned: <form action="/">
+	  <button type="submit"> {{farm}} </button>
+    </form>
+    <br>
+    Crops Planted: {{ crops }}
+    <br>
+    Total Farmland: {{ land }}
+    <br>
+    Total Crops Owned: {{ crops }}
+    <br>
+    Total Cash: {{ cash }}
+
+{% endblock %}
