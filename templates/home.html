@@ -2,8 +2,49 @@
 {% block title %} Homepage || {{ name }} {% endblock %}
 {% block body %}
 
+<<<<<<< HEAD
 <form action="/logout">
    <button type="submit"> Logout </button>
 </form>
 
 {% endblock %}
+=======
+<html>
+    <head>
+        <title>Your Most Recent Farm: {{ name }}</title>
+        <link rel="stylesheet" href="static/style.css">
+    </head>
+
+    <body>
+        <h1>{{ message }}</h1>
+        {% if noFarm %}
+            <form  action="/createFarm", method="POST">
+                Farm Name : <input type="text" name="farmName"> <br>
+                Location : <input type="text" name="location"> <br>
+                Visibility: <input type="text" name="visible" placeholder="0-public, 1-private, or 2-friends only"> <br>
+                <button type="submit"> Create Farm </button>
+            </form>
+        {% else %}
+        <table class="farm">
+            {% for row in farm %}
+                <tr>
+                    {% for tile in row %}
+                        <td class="farm-tile">{{tile}}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+
+        </table>
+        {% endif %}
+
+        <form action="/viewprofile">
+            <button type="submit"> View Profile </button>
+        </form>
+        <form action="/logout">
+            <button type="submit"> Logout </button>
+        </form>
+    </body>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='farm.js') }}"></script>
+</html>
+>>>>>>> 6a091e40143d84a9530f0a52a6608709871c8e76

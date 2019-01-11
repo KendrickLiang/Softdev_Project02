@@ -5,11 +5,19 @@
         <title> {{ username }} </title>
     </head>
     <body>
-      Username: {{ user }}
-      Farms Owned: {{ farm }}
-      Crops Planted: {{ crops }}
-      Total Farmland: {{ land }}
-      Total Crops Owned: {{ crops }}
-      Total Cash: {{ cash }}
+        Username: {{ user }}
+        <br>
+        Farms Owned: <form action="/">
+	    <button type="submit"> {{farm}} </button>
+        </form>
+        <br>
+        Crops Planted: {{ crops }}
+        <br>
+        Total Farmland: {{ land }}
+        <br>
+        Total Crops Owned: {{ crops }}
+        <br>
+        Total Cash: {{ cash }}
+	
     </body>
 </html>

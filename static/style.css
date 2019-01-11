@@ -1,0 +1,11 @@
+.farm {
+    width:100%
+}
+
+.farm-tile {
+    width:10%;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    border: 1px solid;
+}
