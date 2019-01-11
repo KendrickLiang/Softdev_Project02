@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-
-<html>
-    <head>
-        <title>Your Most Recent Farm: {{ name }}</title>
-        <link rel="stylesheet" href="static/style.css">
-    </head>
-
-    <body>
+{% extends "template.html" %}
+{% block title %} CamoFlask {% endblock %}
+{% block body %}
         <h1>{{ message }}</h1>
         {% if noFarm %}
             <form  action="/createFarm", method="POST">
@@ -34,7 +28,6 @@
         <form action="/logout">
             <button type="submit"> Logout </button>
         </form>
-    </body>
-
+    
     <script type="text/javascript" src="{{ url_for('static', filename='farm.js') }}"></script>
-</html>
+{% endblock %}
