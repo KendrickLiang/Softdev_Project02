@@ -2,22 +2,23 @@
 {% block title %} Your Most Recent Farm: {{ name }} {% endblock %}
 
 <link rel="stylesheet" href="static/style.css">
-
 {% block body %}
-    <h1>{{ message }}</h1>
-    {% if noFarm %}
-        <form  action="/createFarm", method="POST">
-            Farm Name : <input type="text" name="farmName"> <br>
-            Location : <input type="text" name="location"> <br>
-            Visibility: <input type="text" name="visible" placeholder="0-public, 1-private, or 2-friends only"> <br>
-            <button type="submit"> Create Farm </button>
-        </form>
-    {% else %}
-    <table class="farm">
-       {% for row in farm %}
-       <tr>
-       {% for tile in row %}
-       <td class="farm-tile">{{tile}}</td>
+        <h1>{{ message }}</h1>
+        {% if noFarm %}
+            <form  action="/createFarm", method="POST">
+                Farm Name : <input type="text" name="farmName"> <br>
+                Location : <input type="text" name="location"> <br>
+                Visibility: <input type="text" name="visible" placeholder="0-public, 1-private, or 2-friends only"> <br>
+                <button type="submit"> Create Farm </button>
+            </form>
+        {% else %}
+        <table class="farm">
+            {% for row in farm %}
+                <tr>
+                    {% for tile in row %}
+                        <td class="farm-tile">{{tile}}</td>
+                    {% endfor %}
+                </tr>
             {% endfor %}
        </tr>
       {% endfor %}
