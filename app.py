@@ -4,7 +4,8 @@ from flask import Flask, render_template, flash, request, session, redirect, url
 
 from util import db as silo
 
-global DB_FIlE = "/data/silo.db"
+silo.fileName("data/silo.db")
+silo.createTables()
 app = Flask(__name__)
 app.secret_key = os.urandom(64)
 
@@ -12,7 +13,7 @@ app.secret_key = os.urandom(64)
 def index():
     print(session)
     if 'current_user' in session:
-        return render_template('home.html', message='Your farm')
+        return render_template('home.html', user=session['current_user'])
     return render_template('login.html', title="Login")
 
 @app.route("/authentication", methods=['POST'])
@@ -23,13 +24,10 @@ def authenticate():
     If valid - log them in and send them to the home page
     '''
     username, password = request.form['username'].strip(), request.form['password'].strip()
-    if username == '' and password == '':
-        return redirect("/")
-    if silo.checkUser(username, password):
+    if username != '' and password != ''  and silo.checkUser(username, password):
         session['current_user'] = username
         current_user = username
-        return redirect("/")
-    return render_template('home.html', message='FAIL@')
+    return redirect("/")
 
 @app.route("/registration", methods=['POST'])
 def register():
@@ -39,9 +37,10 @@ def register():
     if No - add user, password into database and send them to the home page
     '''
     if silo.addUser(request.form['username'].strip(), request.form['password'].strip()):
-        session['current_user'] = username
-        return render_template('home.html', message='WELCOME'+request.form['username'].strip())
-    render_template('login.html')
+        session['current_user'] = request.form['username']
+        return render_template('home.html', message='WELCOME'+session['current_user'])
+    flash("Invalid Username")
+    return redirect("/")
 
 @app.route("/logout")
 def logout():
