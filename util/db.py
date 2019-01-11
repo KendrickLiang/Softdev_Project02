@@ -78,9 +78,7 @@ def getFarmName(user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("SELECT farm_name FROM farms where owner = (?);", (user))
-    farmname = c.fetchone
+    farmname = c.fetchall()
     db.commit()
     db.close()
     return farmname
-    
-        
