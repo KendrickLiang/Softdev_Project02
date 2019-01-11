@@ -2,15 +2,15 @@
 {% block title %} {{ foo }} {% endblock %}
 {% block body %}
 
-<div style="margin:50; border:2px">
-  <div> <h1 style="color:green"> WELCOME USER! </h1> </div>
-  <form action="/authentication" method="POST" style="padding:50">
+<div>
+  <div> <h1> WELCOME USER! </h1> </div>
+  <form action="/authentication" method="POST">
     Username: <input type="text" name="username"><br>
     Password: <input type="password" name="password"><br>
     <button type="submit"> Login </button>
   </form>
 
-  <form action="/registration" method="POST" style="padding:50">
+  <form action="/registration" method="POST">
 	  Username: <input type="text" name="username"><br>
 	  Password: <input type="password" name="password"><br>
 	  <button type="submit"> Register </button>
