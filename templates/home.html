@@ -1,12 +1,9 @@
-<!DOCTYPE html>
+{% extends "template.html" %}
+{% block title %} Homepage || {{ name }} {% endblock %}
+{% block body %}
 
-<html>
-    <head>
-        <title> CamoFlask </title>
-    </head>
-    <body>
-        <form action="/logout">
-            <button type="submit"> Logout </button>
-        </form>
-    </body>
-</html>
+<form action="/logout">
+   <button type="submit"> Logout </button>
+</form>
+
+{% endblock %}

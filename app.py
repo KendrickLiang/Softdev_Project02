@@ -33,6 +33,9 @@ def logout():
     session.pop('current_user')
     return redirect("/")
 
+@app.route("/farm")
+def farm():
+    return render_template('farm.html', name = 'Derek')
 if __name__ == "__main__":
     app.debug = True
     app.run()
