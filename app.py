@@ -48,11 +48,6 @@ def logout():
     session.pop('current_user')
     return redirect("/")
 
-<<<<<<< HEAD
-@app.route("/farm")
-def farm():
-    return render_template('farm.html', name = 'Derek')
-=======
 @app.route("/viewprofile")
 def view():
     return render_template('profile.html', user=session['current_user'], farm="Farm A", crops="Corn", land="9", cash="180")
@@ -62,7 +57,6 @@ def createFarm():
     farm.createFarm(session['current_user'], request.form['farmName'], request.form['location'],  100, request.form['visible'])
     return redirect("/")
 
->>>>>>> 6a091e40143d84a9530f0a52a6608709871c8e76
 if __name__ == "__main__":
     app.debug = True
     app.run()
