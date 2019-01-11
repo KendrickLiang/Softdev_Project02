@@ -2,7 +2,7 @@
 
 <html>
     <head>
-        <title>Your Most Recent Farm: {{name}}</title>
+        <title>Your Most Recent Farm: {{ name }}</title>
     </head>
     <style>
       .grid-container {
@@ -20,18 +20,21 @@
       }
     </style>
     <body>
-      <h1>Welome {{ user }}</h1>
+      <h1>{{ message }}</h1>
       <div class="grid-container">
-	<div class="grid-item">1</div>
-	<div class="grid-item">2</div>
-	<div class="grid-item">3</div>
-	<div class="grid-item">4</div>
-	<div class="grid-item">5</div>
-	<div class="grid-item">6</div>
-	<div class="grid-item">7</div>
-	<div class="grid-item">8</div>
-	<div class="grid-item">9</div>
+	<div class="grid-item">{{ v1 }}</div>
+	<div class="grid-item">{{ v2 }}</div>
+	<div class="grid-item">{{ v3 }}</div>
+	<div class="grid-item">{{ v4 }}</div>
+	<div class="grid-item">{{ v5 }}</div>
+	<div class="grid-item">{{ v6 }}</div>
+	<div class="grid-item">{{ v7 }}</div>
+	<div class="grid-item">{{ v8 }}</div>
+	<div class="grid-item">{{ v9 }}</div>
       </div>
+      <form action="/viewprofile">
+        <button type="submit"> View Profile </button>
+      </form>
       <form action="/logout">
         <button type="submit"> Logout </button>
       </form>
