@@ -6,7 +6,7 @@ backports.shutil-get-terminal-size==1.0.0
 beautifulsoup4==4.6.0
 blinker==1.4
 chardet==3.0.4
-click==6.7
+Click==7.0
 colorama==0.3.7
 constantly==15.1.0
 cryptography==2.1.4
@@ -30,6 +30,8 @@ ipython==5.5.0
 ipython-genutils==0.2.0
 itsdangerous==0.24
 Jinja2==2.10
+keyring==10.6.0
+keyrings.alt==3.0
 lockfile==0.12.2
 lxml==4.2.1
 MarkupSafe==1.0
@@ -48,6 +50,7 @@ pickleshare==0.7.4
 Pillow==5.1.0
 piston-mini-client==0.7.5
 prompt-toolkit==1.0.15
+pur==5.2.1
 pyasn1==0.4.2
 pyasn1-modules==0.2.1
 pycairo==1.16.2
@@ -76,6 +79,7 @@ rope==0.10.5
 ropemacs==0.8
 ropemode==0.4
 scandir==1.7
+SecretStorage==2.3.1
 service-identity==16.0.0
 simplegeneric==0.8.1
 simplejson==3.13.2
