@@ -13,7 +13,7 @@ def createMap(area, time):
     print (size)
     map = ''
     for x in range(size):
-        row = ",".join(random.choices(['Dirt', 'Rock', 'Tree'], [1, 15, 15], k=size))
+        row = ",".join(random.choices(['Dirt', 'Rock', 'Tree'], [1, 10, 10], k=size))
         map += row + ";"
 
     return map[:-1]

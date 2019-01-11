@@ -60,6 +60,8 @@ def haveFarm(user):
     return False
 
 def getFarm(user):
+    if not haveFarm(user):
+        return ''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("SELECT map FROM farms where owner = (?);", (user))
