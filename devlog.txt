@@ -83,9 +83,13 @@ array to the frontEnd to display the necessary info into table
 slot later. Storage solution = 2D array (Start with text
 representation before images)
 =============================================================
-fristL -- 2018-01-__ __:__
+weiwenZ -- 2018-01-11 02:00
 -------------------------------------------------------------
-what you have done
+-Started doing creation of first farm and creating the farm
+and adding it to the database
+--Error binding parameter 4 - probably unsupported type.
+---> HELP PLEASE I DON'T KNOW what's wrong. When creating first
+farm this error occurs.
 =============================================================
 fristL -- 2018-01-__ __:__
 -------------------------------------------------------------

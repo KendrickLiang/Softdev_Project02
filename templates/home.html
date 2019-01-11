@@ -8,7 +8,14 @@
 
     <body>
         <h1>{{ message }}</h1>
-
+        {% if noFarm %}
+            <form  action="/createFarm", method="POST">
+                Farm Name : <input type="text" name="farmName"> <br>
+                Location : <input type="text" name="location"> <br>
+                Visibility: <input type="text" name="visible" placeholder="0-public, 1-private, or 2-friends only"> <br>
+                <button type="submit"> Create Farm </button>
+            </form>
+        {% else %}
         <table class="farm">
             {% for x in range(10) %}
                 <tr>
@@ -23,6 +30,7 @@
             {% endfor %}
 
         </table>
+        {% endif %}
 
         <form action="/viewprofile">
             <button type="submit"> View Profile </button>

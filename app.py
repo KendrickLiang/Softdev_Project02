@@ -3,6 +3,7 @@ import json, urllib, os
 from flask import Flask, render_template, flash, request, session, redirect, url_for
 
 from util import db as silo
+from util import farm
 
 silo.fileName("data/silo.db")
 silo.createTables()
@@ -11,9 +12,9 @@ app.secret_key = os.urandom(64)
 
 @app.route("/")
 def index():
-    print(session)
     if 'current_user' in session:
-        return render_template('home.html', farm="Sample", message='WELCOME '+session['current_user'], row=10, col=10)
+        print(not silo.haveFarm(session['current_user']))
+        return render_template('home.html', farm='', message='WELCOME '+session['current_user'], noFarm=not silo.haveFarm(session['current_user']))
     return render_template('login.html', title="Login")
 
 @app.route("/authentication", methods=['POST'])
@@ -38,7 +39,7 @@ def register():
     '''
     if silo.addUser(request.form['username'].strip(), request.form['password'].strip()):
         session['current_user'] = request.form['username']
-        return render_template('home.html', farm="Sample", message='WELCOME'+session['current_user'])
+        return redirect("/")
     flash("Invalid Username")
     return redirect("/")
 
@@ -50,6 +51,12 @@ def logout():
 @app.route("/viewprofile")
 def view():
     return render_template('profile.html', user=session['current_user'], farm="Farm A", crops="Corn", land="9", cash="180")
+
+@app.route("/createFarm", methods=['POST'])
+def createFarm():
+    farm.createFarm(session['current_user'], request.form['farmName'], request.form['location'],  100, request.form['visible'])
+    return redirect("/")
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
