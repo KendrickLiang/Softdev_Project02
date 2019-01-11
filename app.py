@@ -48,6 +48,14 @@ def logout():
     session.pop('current_user')
     return redirect("/")
 
+<<<<<<< Updated upstream
+=======
+
+@app.route("/farm")
+def farm():
+    return render_template('farm.html', name = 'Derek')
+
+>>>>>>> Stashed changes
 @app.route("/viewprofile")
 def view():
     return render_template('profile.html', user=session['current_user'], farm="Farm A", crops="Corn", land="9", cash="180")
