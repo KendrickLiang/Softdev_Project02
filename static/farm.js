@@ -7,8 +7,8 @@ for(x = 0; x<farm.length; x++) {
     farm[x].addEventListener("mouseover", function(e){
         console.log(e);
     })
-    console.log(farm[x].innerHTML == 'G');
-    if (farm[x].innerHTML == 'G') {
+    console.log(farm[x].innerHTML == 'Dirt');
+    if (farm[x].innerHTML == 'Dirt') {
         farm[x].addEventListener("click", function(e) {
             this.innerHTML = "CLICK";
         })

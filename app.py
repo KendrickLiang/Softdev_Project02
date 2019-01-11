@@ -14,7 +14,7 @@ app.secret_key = os.urandom(64)
 def index():
     if 'current_user' in session:
         print(not silo.haveFarm(session['current_user']))
-        return render_template('home.html', farm='', message='WELCOME '+session['current_user'], noFarm=not silo.haveFarm(session['current_user']))
+        return render_template('home.html', farm=silo.getFarm(session['current_user']), message='WELCOME '+session['current_user'], noFarm=not silo.haveFarm(session['current_user']))
     return render_template('login.html', title="Login")
 
 @app.route("/authentication", methods=['POST'])

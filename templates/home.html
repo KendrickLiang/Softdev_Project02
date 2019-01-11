@@ -17,14 +17,10 @@
             </form>
         {% else %}
         <table class="farm">
-            {% for x in range(10) %}
+            {% for row in farm %}
                 <tr>
-                    {% for y in range(10) %}
-                        {% if y == 5 %}
-                            <td class="farm-tile">G</td>
-                        {% else %}
-                            <td class="farm-tile">{{y}}</td>
-                        {% endif %}
+                    {% for tile in row %}
+                        <td class="farm-tile">{{tile}}</td>
                     {% endfor %}
                 </tr>
             {% endfor %}
