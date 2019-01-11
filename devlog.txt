@@ -99,12 +99,9 @@ fancy graphics please.
 --Funny thing about the error. I tried to insert the time
 module into the database by mistake for the time_created
 =============================================================
-zaneW -- 2018-01-11 02:37
+fristL -- 2018-01-__ __:__
 -------------------------------------------------------------
--Connected the different files to each other so that user can
-easily transition between pages using only front end
--Moved css to static folder in styles.css, will later spice 
-up user interface after making fxns and core functionality
+what you have done
 =============================================================
 fristL -- 2018-01-__ __:__
 -------------------------------------------------------------
