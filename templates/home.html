@@ -1,7 +1,5 @@
 {% extends "template.html" %}
-{% block title %} Your Most Recent Farm: {{ name }} {% endblock %}
-
-<link rel="stylesheet" href="static/style.css">
+{% block title %} CamoFlask {% endblock %}
 {% block body %}
         <h1>{{ message }}</h1>
         {% if noFarm %}
@@ -20,17 +18,16 @@
                     {% endfor %}
                 </tr>
             {% endfor %}
-       </tr>
-      {% endfor %}
-    </table>
-    {% endif %}
 
-      <form action="/viewprofile">
-         <button type="submit"> View Profile </button>
-      </form>
-      <form action="/logout">
-         <button type="submit"> Logout </button>
-      </form>
+        </table>
+        {% endif %}
+
+        <form action="/viewprofile">
+            <button type="submit"> View Profile </button>
+        </form>
+        <form action="/logout">
+            <button type="submit"> Logout </button>
+        </form>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='farm.js') }}"></script>
 {% endblock %}
-
-<script type="text/javascript" src="{{ url_for('static', filename='farm.js') }}"></script>
