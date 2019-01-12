@@ -1,1 +1,3 @@
-ClimaCell API Key: RM7ZFJn5EpevpYrHlWXeLRDYi6CgngxH
+Insert API key for climaCell in line below:
+  
+< INSERT API KEY HERE>

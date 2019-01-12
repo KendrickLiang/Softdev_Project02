@@ -1,1 +1,3 @@
-World Weather Online API Key: 7d80bd5b10db4b1597834707191101
+Insert API key for World Weather Online in line below:
+  
+< INSERT API KEY HERE>
