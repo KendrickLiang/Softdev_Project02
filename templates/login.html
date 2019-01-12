@@ -3,17 +3,17 @@
 {% block body %}
 
 <div>
-  <div> <h1> WELCOME USER! </h1> </div>
-  <form action="/authentication" method="POST">
-    Username: <input type="text" name="username"><br>
-    Password: <input type="password" name="password"><br>
+    <div> <h1> WELCOME USER! </h1> </div>
+    <form action="/authentication" method="POST">
+        Username: <input type="text" name="username"><br>
+        Password: <input type="password" name="password"><br>
     <button type="submit"> Login </button>
-  </form>
+    </form>
 
-  <form action="/registration" method="POST">
-	  Username: <input type="text" name="username"><br>
-	  Password: <input type="password" name="password"><br>
-	  <button type="submit"> Register </button>
-  </form>
+    <form action="/registration" method="POST">
+        Username: <input type="text" name="username"><br>
+	Password: <input type="password" name="password"><br>
+	<button type="submit"> Register </button>
+    </form>
 </div>
 {% endblock %}
