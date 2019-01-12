@@ -25,7 +25,7 @@ var cropSelect = function(tile) {
         console.log(document.getElementById('cropType').value);
         tile.innerHTML = document.getElementById('cropType').value;
         tile.removeEventListener("click", function(e) {
-            this.innerHTML = "CLICK";
+            //this.innerHTML = "CLICK";
             cropSelect(this)
         });
         tile.addEventListener("mouseover", function(e){
