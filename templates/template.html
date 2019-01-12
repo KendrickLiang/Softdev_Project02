@@ -1,0 +1,22 @@
+<html class="no-js" lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description"/>
+        <meta name="author">
+        <title>CamoFlask {% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="static/style.css">
+        <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    </head>
+    <body>
+        {% set msgs = get_flashed_messages() %}
+        {% for msg in msgs %}
+            <p style="color: red">{{ msg }}</p>
+        {% endfor %}
+        {% block body %} Go away. You should not be here.{% endblock %}
+    <footer style="padding-left: 0.9375rem;"><br>Copyright &copy; 2019 CamoFlask</footer>
+    </body>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+</html>
