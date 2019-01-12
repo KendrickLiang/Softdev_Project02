@@ -36,9 +36,13 @@
     <p><button class="button" data-open="exampleModal1">Click me for a modal</button></p>
 
     <div class="reveal" id="exampleModal1" data-reveal>
-        <h1>Awesome. I Have It.</h1>
-        <p class="lead">Your couch. It is mine.</p>
-        <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+        <h1>What crop would you like to plant?</h1>
+        <p class="lead"> Choose 1 from the crops that you own. </p>
+        <li> <ul class ="vertical dropdown menu" data-dropdown-menu>
+	    <li> <a href="/"> Corn </a> </li>
+	    <li> <a href="/"> What other crops you own </a> </li>
+	</ul>
+	</li>  
         <input type="text" id="cropType">
         <button class="close-button" id="modal-button" data-close aria-label="Close modal" type="button">
             <span aria-hidden="true">&times;</span>
