@@ -4,6 +4,7 @@ from flask import Flask, render_template, flash, request, session, redirect, url
 
 from util import db as silo
 from util import farm
+from util import api
 
 silo.fileName("data/silo.db")
 silo.createTables()
@@ -12,6 +13,7 @@ app.secret_key = os.urandom(64)
 
 @app.route("/")
 def index():
+    api.getCropInfo()
     if 'current_user' in session:
         print(not silo.haveFarm(session['current_user']))
         return render_template('home.html', farm=silo.getFarm(session['current_user']), message='WELCOME '+session['current_user'], noFarm=not silo.haveFarm(session['current_user']))
