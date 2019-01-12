@@ -118,9 +118,9 @@ kendrickL -- 2018-01-12 17:20
 - edited README.md
 - made placeholder files for keys in keys folder
 =============================================================
-fristL -- 2018-01-__ __:__
+kendrickL -- 2018-01-12 17:33
 -------------------------------------------------------------
-what you have done
+- updated design doc to show purpose of Foundation FEF and re-assign roles
 =============================================================
 fristL -- 2018-01-__ __:__
 -------------------------------------------------------------
