@@ -1,5 +1,7 @@
 import sqlite3
 
+from util import farm as silo
+
 def fileName(name):
     global DB_FILE
     DB_FILE = name
@@ -65,9 +67,8 @@ def getFarm(user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("SELECT map FROM farms where owner = (?);", (user))
-    farm = c.fetchone()[0].split(";")
-    for num in range(len(farm)):
-        farm[num] = farm[num].split(",")
+    farm = silo.mapArray(c.fetchone()[0])
+    #print(farm)
     db.commit()
     db.close()
     return farm
@@ -82,3 +83,22 @@ def getFarmName(user):
     db.commit()
     db.close()
     return farmname
+
+def addCrop(user, farm, crop):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("UPDATE farms SET crops = crops || (?) WHERE owner = (?) and farm_name = (?);", (crop, user, farm))
+    db.commit()
+    db.close()
+    return True
+
+def updateMap(user, farm, map):
+    '''
+    Map is a string
+    '''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("UPDATE farms SET map = (?) WHERE owner = (?) and farm_name = (?);", (map, user, farm))
+    db.commit()
+    db.close()
+    return True
