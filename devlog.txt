@@ -106,9 +106,12 @@ easily transition between pages using only front end
 -Moved css to static folder in styles.css, will later spice
 up user interface after making fxns and core functionality
 =============================================================
-fristL -- 2018-01-__ __:__
+weiwenZ -- 2018-01-12 03:20
 -------------------------------------------------------------
-what you have done
+-Create functions to update farm information in the database
+-Begun work on the frontEnd to simulate planting crops
+-- Incomplete and very funky and bad js. FrontEnd please fix
+so I do more backEnd.
 =============================================================
 fristL -- 2018-01-__ __:__
 -------------------------------------------------------------
