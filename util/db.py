@@ -52,7 +52,8 @@ def addFarm(owner, name, location, area, time, map, visible):
 def haveFarm(user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("SELECT EXISTS (SELECT 1 FROM farms where owner = (?) );", (user))
+    print('what is in user here', user)
+    c.execute("SELECT EXISTS (SELECT 1 FROM farms where owner = (?) );", (user,))
     if c.fetchone()[0]:
         db.commit()
         db.close()
