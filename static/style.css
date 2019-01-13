@@ -9,3 +9,24 @@
     text-align: center;
     border: 1px solid;
 }
+
+.box {
+    text-align: -webkit-center;
+    color: green;
+}
+
+.loginbox {
+    margin: 20px;
+    width: 500px;
+    color: black;
+    padding: 50px;
+    border: 1px solid ;
+}
+
+.registerbox {
+    margin: 20px;
+    width: 500px;
+    color: black;
+    padding: 50px;
+    border: 1px solid ;
+}

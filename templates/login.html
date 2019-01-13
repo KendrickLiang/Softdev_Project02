@@ -2,15 +2,15 @@
 {% block title %} CamoFlask {% endblock %}
 {% block body %}
 
-<div>
+<div class="box">
     <div> <h1> WELCOME USER! </h1> </div>
-    <form action="/authentication" method="POST">
+    <form class="loginbox" action="/authentication" method="POST">
         Username: <input type="text" name="username"><br>
         Password: <input type="password" name="password"><br>
     <button type="submit"> Login </button>
     </form>
 
-    <form action="/registration" method="POST">
+    <form class="registerbox" action="/registration" method="POST">
         Username: <input type="text" name="username"><br>
 	Password: <input type="password" name="password"><br>
 	<button type="submit"> Register </button>

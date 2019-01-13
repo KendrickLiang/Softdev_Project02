@@ -1,9 +1,9 @@
 {
   "awhere.com": {
-    "key": xxxx,
-    "secret_key": xxxx
+    "key": "0EI5hYgGm8avoh0Wb3FtHv2Zticj2SFP",
+    "secret_key": "8rMs8Smk6yEj8wAo"
   },
-  "accuweather.com": xxxx,
-  "climacell.co": xxxx,
-  "worldweatheronline.com": xxxx
+  "accuweather.com": "zbb9PjgfDBEUzUoJsAnHuzqXq4grJfCY",
+  "climacell.co": "RM7ZFJn5EpevpYrHlWXeLRDYi6CgngxH",
+  "worldweatheronline.com": "7d80bd5b10db4b1597834707191101"
 }
