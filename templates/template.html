@@ -8,13 +8,16 @@
         <link rel="stylesheet" href="static/style.css">
         <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
     </head>
+    {% block content %}
     <body>
+    {% endblock %}
+
         <div class="grid-y medium-grid-frame">
             {% set msgs = get_flashed_messages() %}
             {% for msg in msgs %}
                 <p style="color: red">{{ msg }}</p>
             {% endfor %}
-            <div style="height:40vw;" class="cell medium-auto medium-cell-block-container">
+            <div style="height:90vh;" class="cell medium-auto medium-cell-block-container">
                 {% block body %} Go away. You should not be here.{% endblock %}
             </div>
             <div class="cell shrink footer">

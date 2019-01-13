@@ -1,7 +1,11 @@
 {% extends "template.html" %}
 {% block title %} CamoFlask {% endblock %}
+{% block content %}
+<body onload="updateTime()">
+{% endblock %}
 {% block body %}
-    <h1>{{ message }}</h1>
+    <h1>{{ message }} <span class="text-right" id="time"></span> </h1>
+
     {% if noFarm %}
         <form  action="/location", method="POST">
             Farm Name : <input type="text" name="farmName"> <br>
