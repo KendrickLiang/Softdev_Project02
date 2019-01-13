@@ -1,21 +1,38 @@
 import json, base64
 import urllib.request as request
 
-def access_info(URL_STUB, API_KEY, header, body):
+def access_info(URL_STUB, header, body):
     '''
     Helper to access the info for a URL. Returns the JSON.
     Params: URL_STUB, API_KEY, header for applying headers to requests
     NOTE: API_KEY should only be used if the key can be put in the URL. Otherwise, use **kwargs.
     '''
-    request_object = request.Request(URL_STUB+API_KEY, headers=header,data=body)
+    request_object = request.Request(URL_STUB, headers=header,data=body)
     response = request.urlopen(request_object)
     response = response.read()
     info = json.loads(response)
     return info
 
-def getLocationInfo():
-    url = "http://dataservice.accuweather.com/locations/v1/cities/ipaddress"
+def searchLocation(query):
+    with open("keys/keys.json") as json_file:
+        keys = json.load(json_file)
+    URL = "http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey="
+    API_KEY = keys['accuweather.com']
+    URL_STUB = URL + API_KEY + "&q=" + query
+    return access_info(URL_STUB, {}, None)
 
+def getipLocation():
+    URL = "http://dataservice.accuweather.com/locations/v1/cities/ipaddress?apikey="
+    with open("keys/keys.json") as json_file:
+        keys = json.load(json_file)
+    API_KEY = keys['accuweather.com']
+    URL_STUB = URL + API_KEY
+    return access_info(URL_STUB, {}, None)
+
+def weatherInfo():
+    URL = "api2.climacell.co/v2"
+    #apikey: your-unique-key
+    #Content-Type: application/JSON
 
 def getCropInfo():
     '''
@@ -32,7 +49,7 @@ def getCropInfo():
     header = {
         "Authorization": "Bearer %s" % auth_token,
     }
-    data = access_info(URL_STUB, '', header, None)
+    data = access_info(URL_STUB, header, None)
     return data
 
 def encode_secret_and_key(key, secret):

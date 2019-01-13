@@ -1,0 +1,22 @@
+{% extends "template.html" %}
+{% block title %} CamoFlask {% endblock %}
+{% block body %}
+
+    <h1> Choose your location! </h1>
+    <h2> Showing results for {{ location_query }} </h2>
+
+    <form action="/createFarm", method='POST'>
+        Farm Name: <input type="text" value="{{userInput[0]}}" name="farmName" readonly> <br>
+        Visibility: <input type="text" value="{{userInput[1]}}" name="visible" readonly> <br>
+        Current Location: <button class="primary success" name="location"
+        value="{{location_result[0]['LocalizedName']}}, {{location_result[0]['AdministrativeArea']['LocalizedName']}}, {{location_result[0]['Country']['LocalizedName']}};{{location_result[0]['Key']}}">
+            {{location_result[0]['LocalizedName']}}, {{location_result[0]['AdministrativeArea']['LocalizedName']}}, {{location_result[0]['Country']['LocalizedName']}}
+        </button> <br><br>
+        {% for row in location_result[1] %}
+            <button class="primary success" name="location"
+            value="{{row['LocalizedName']}}, {{row['AdministrativeArea']['LocalizedName']}}, {{row['Country']['LocalizedName']}};{{row['Key']}}">
+                {{row['LocalizedName']}}, {{row['AdministrativeArea']['LocalizedName']}}, {{row['Country']['LocalizedName']}}
+            </button> <br>
+        {% endfor %}
+    </form>
+{% endblock %}
