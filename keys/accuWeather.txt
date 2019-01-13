@@ -1,1 +1,3 @@
-accuWeather API Key: zbb9PjgfDBEUzUoJsAnHuzqXq4grJfCY
+Insert API key for accuWeather in line below:
+
+< INSERT API KEY HERE>

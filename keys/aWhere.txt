@@ -1,2 +1,6 @@
-aWhere API Key: oH22CgKwJeosq45KRnH2NBiG8iNiNGV0
-aWhere Secret Key: xLMI6FeJTvF4Tocy
+Insert API key for aWhere in line below:
+  
+< INSERT API KEY HERE>
+Insert Secret key for aWhere in line below:
+  
+< INSERT API KEY HERE>

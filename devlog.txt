@@ -113,13 +113,14 @@ weiwenZ -- 2018-01-12 03:20
 -- Incomplete and very funky and bad js. FrontEnd please fix
 so I do more backEnd.
 =============================================================
-fristL -- 2018-01-__ __:__
+kendrickL -- 2018-01-12 17:20
 -------------------------------------------------------------
-what you have done
+- edited README.md
+- made placeholder files for keys in keys folder
 =============================================================
-fristL -- 2018-01-__ __:__
+kendrickL -- 2018-01-12 17:33
 -------------------------------------------------------------
-what you have done
+- updated design doc to show purpose of Foundation FEF and re-assign roles
 =============================================================
 fristL -- 2018-01-__ __:__
 -------------------------------------------------------------
