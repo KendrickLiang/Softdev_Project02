@@ -17,13 +17,14 @@
     <table class="farm">
         {% set counter = 0 %}
         {% for row in farm %}
+            {% set y = loop.index0 %}
             <tr>
                 {% for tile in row %}
                     {% if tile == 'Dirt' %}
-                        <td class="farm-tile" data-open="Plant-Modal" id="plantable{{counter}}" onclick="tileSelect('plantable{{counter}}')">
+                        <td class="farm-tile" data-open="Plant-Modal" id="{{y}}{{loop.index0}}" onclick="tileSelect('{{y}}{{loop.index0}}')">
                             {{tile}}
                         </td>
-                        {% set counter = counter + 1 %}
+
                     {% else %}
                         <td class="farm-tile">{{tile}}</td>
                     {% endif %}
@@ -47,7 +48,7 @@
     <div class="reveal" id="Plant-Modal" data-reveal>
         <h1>What crop would you like to plant?</h1>
         {% for crop in cropTypes['crops'] %}
-            <button class="button primary" data-close onclick = "plant_crop('{{ crop['name'] }}');">{{ crop['name'] }}:{{ crop['variety'] }}</button>
+            <button class="button primary" data-close onclick = "plant_crop('{{ crop['name'] }}', '{{ crop['id']}}' );">{{ crop['name'] }}-{{ crop['variety'] }}</button>
         {% endfor %}
 	<!--
         <button class="close-button" id="modal-button" data-close aria-label="Close modal" type="button">

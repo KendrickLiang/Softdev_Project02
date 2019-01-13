@@ -66,6 +66,16 @@ def locationSelection():
     farm.createFarm(session['current_user'], request.form['farmName'], request.form['location'],  100, request.form['visible'])
     return redirect("/")
 
+@app.route("/plantInfo", methods=['POST'])
+def plantInfo():
+    models = api.getModels()
+    cropID = request.form['cropID']
+    for model in models:
+        if cropID in model['_links']['awhere:crop'][0]['href']:
+            link = model['_links']['self']['href']
+    details = api.getModelDetails(link)
+    return ''
+
 if __name__ == "__main__":
     app.debug = True
     app.run()

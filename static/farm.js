@@ -4,14 +4,26 @@ var current_tile = null;
 
 var farm = document.getElementsByClassName('farm-tile');
 
-var tileSelect = function(tile_id) {
-    current_tile = document.getElementById(tile_id);
+for(x = 0; x<farm.length; x++) {
+    farm[x].addEventListener("mouseover", function(e){
+        //console.log(e);
+    })
 }
 
-var plant_crop = function(cropName) {
+var tileSelect = function(tile_id) {
+    console.log(farm);
+    num =  parseInt(tile_id,10);
+    t = farm[num]
+    console.log(tile_id, num, document.getElementById(tile_id), t);
+    current_tile = document.getElementById(tile_id);
+    console.log(current_tile);
+}
+
+var plant_crop = function(cropName, cropType) {
     if (current_tile != null) {
         console.log(current_tile);
         current_tile.innerHTML = cropName;
+        current_tile.setAttribute("cropType", cropType);
         current_tile.removeAttribute("onclick");
         current_tile.removeAttribute("data-open");
         current_tile = null;

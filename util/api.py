@@ -52,6 +52,41 @@ def getCropInfo():
     data = access_info(URL_STUB, header, None)
     return data
 
+def getModels():
+    '''
+        Get Model listing
+    '''
+    with open("keys/keys.json") as json_file:
+        keys = json.load(json_file)
+    api_key = keys['awhere.com']['key']
+    api_secret = keys['awhere.com']['secret_key']
+    api_URL= "https://api.awhere.com/"
+    URI = "v2/agronomics/models"
+    URL_STUB = api_URL + URI
+    auth_token = get_oauth_token(encode_secret_and_key(api_key, api_secret))
+    header = {
+        "Authorization": "Bearer %s" % auth_token,
+    }
+    data = access_info(URL_STUB, header, None)
+    return data['models']
+
+def getModelDetails(URI):
+    '''
+        Get a specific models details
+    '''
+    with open("keys/keys.json") as json_file:
+        keys = json.load(json_file)
+    api_key = keys['awhere.com']['key']
+    api_secret = keys['awhere.com']['secret_key']
+    api_URL= "https://api.awhere.com/"
+    URL_STUB = api_URL + URI
+    auth_token = get_oauth_token(encode_secret_and_key(api_key, api_secret))
+    header = {
+        "Authorization": "Bearer %s" % auth_token,
+    }
+    data = access_info(URL_STUB, header, None)
+    return data
+
 def encode_secret_and_key(key, secret):
     """
     Docs:
