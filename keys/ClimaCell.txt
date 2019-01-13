@@ -1,3 +1,0 @@
-Insert API key for climaCell in line below:
-  
-< INSERT API KEY HERE>

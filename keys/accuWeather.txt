@@ -1,3 +1,0 @@
-Insert API key for accuWeather in line below:
-
-< INSERT API KEY HERE>
