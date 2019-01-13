@@ -13,10 +13,9 @@ app.secret_key = os.urandom(64)
 
 @app.route("/")
 def index():
-    api.getCropInfo()
     if 'current_user' in session:
         print(not silo.haveFarm(session['current_user']))
-        return render_template('home.html', farm=silo.getFarm(session['current_user']), message='WELCOME '+session['current_user'], noFarm=not silo.haveFarm(session['current_user']))
+        return render_template('home.html', farm=silo.getFarm(session['current_user']), message='WELCOME '+session['current_user'], noFarm=not silo.haveFarm(session['current_user']), cropTypes = api.getCropInfo())
     return render_template('login.html', title="Login")
 
 @app.route("/authentication", methods=['POST'])
@@ -52,12 +51,13 @@ def logout():
 
 @app.route("/viewprofile")
 def view():
-    return render_template('profile.html', user=session['current_user'], farm=silo.getFarm('current_user'), crops="Corn", land="9", cash="180")
+    return render_template('profile.html', user=session['current_user'], farm=silo.getFarmName('current_user'), crops="Corn", land="9", cash="180")
 
 @app.route("/createFarm", methods=['POST'])
 def createFarm():
     farm.createFarm(session['current_user'], request.form['farmName'], request.form['location'],  100, request.form['visible'])
     return redirect("/")
+
 
 if __name__ == "__main__":
     app.debug = True

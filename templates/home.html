@@ -11,11 +11,15 @@
         </form>
     {% else %}
     <table class="farm">
+        {% set counter = 0 %}
         {% for row in farm %}
             <tr>
                 {% for tile in row %}
                     {% if tile == 'Dirt' %}
-                        <td class="farm-tile" data-open="exampleModal1">{{tile}}</td>
+                        <td class="farm-tile" data-open="Plant-Modal" id="plantable{{counter}}" onclick="tileSelect('plantable{{counter}}')">
+                            {{tile}}
+                        </td>
+                        {% set counter = counter + 1 %}
                     {% else %}
                         <td class="farm-tile">{{tile}}</td>
                     {% endif %}
@@ -33,17 +37,19 @@
         <button type="submit"> Logout </button>
     </form>
 
-    <p><button class="button" data-open="exampleModal1">Click me for a modal</button></p>
+    <p><button class="button" data-open="Plant-Modal">Click me for a modal</button></p>
 
-    <div class="reveal" id="exampleModal1" data-reveal>
+    <!-- Plant popup -->
+    <div class="reveal" id="Plant-Modal" data-reveal>
         <h1>What crop would you like to plant?</h1>
-        <p class="lead"> Choose 1 from the crops that you own. </p>
-        <ul>
-	    <li class="cropType"> <a href="#"> Corn </a> </li>
-	</ul>
-	<button class="close-button" id="modal-button" data-close aria-label="Close modal" type="button">
+        {% for crop in cropTypes['crops'] %}
+            <button class="button primary" data-close onclick = "plant_crop('{{ crop['name'] }}');">{{ crop['name'] }}:{{ crop['variety'] }}</button>
+        {% endfor %}
+	<!--
+        <button class="close-button" id="modal-button" data-close aria-label="Close modal" type="button">
             <span aria-hidden="true">&times;</span>
         </button>
+    -->
     </div>
 
     <script type="text/javascript" src="{{ url_for('static', filename='farm.js') }}"></script>

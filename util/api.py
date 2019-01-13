@@ -1,40 +1,39 @@
 import json, base64
 import urllib.request as request
 
-def access_info(URL_STUB, API_KEY = None, **kwargs):
+def access_info(URL_STUB, API_KEY, header, body):
     '''
     Helper to access the info for a URL. Returns the JSON.
-    Params: URL_STUB, API_KEY = None, **kwargs for applying headers to requests
+    Params: URL_STUB, API_KEY, header for applying headers to requests
     NOTE: API_KEY should only be used if the key can be put in the URL. Otherwise, use **kwargs.
     '''
-    # if there's an API key that is not a header
-    if API_KEY:
-        URL = URL_STUB + API_KEY
-    else:
-        URL = URL_STUB
-    request_object = request.Request(URL)
-    # iterate through, adding headers if needed
-    for key, value in kwargs.items():
-        request_object.add_header(key, value)
-
+    request_object = request.Request(URL_STUB+API_KEY, headers=header,data=body)
     response = request.urlopen(request_object)
     response = response.read()
     info = json.loads(response)
     return info
 
+def getLocationInfo():
+    url = "http://dataservice.accuweather.com/locations/v1/cities/ipaddress"
+
+
 def getCropInfo():
-    api_key = '0EI5hYgGm8avoh0Wb3FtHv2Zticj2SFP'
-    api_secret = '8rMs8Smk6yEj8wAo'
-    url = "https://api.awhere.com/v2/agronomics/crops"
+    '''
+        Returns listing of all crop types provided by awhere.
+    '''
+    with open("keys/keys.json") as json_file:
+        keys = json.load(json_file)
+    api_key = keys['awhere.com']['key']
+    api_secret = keys['awhere.com']['secret_key']
+    api_URL= "https://api.awhere.com/"
+    URI = "v2/agronomics/crops"
+    URL_STUB = api_URL + URI
     auth_token = get_oauth_token(encode_secret_and_key(api_key, api_secret))
     header = {
         "Authorization": "Bearer %s" % auth_token,
     }
-    request_object = request.Request(url, headers=header)
-    response = request.urlopen(request_object)
-    response = response.read()
-    data = json.loads(response)
-    print(data)
+    data = access_info(URL_STUB, '', header, None)
+    return data
 
 def encode_secret_and_key(key, secret):
     """
