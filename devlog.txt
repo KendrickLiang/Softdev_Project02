@@ -122,13 +122,17 @@ kendrickL -- 2018-01-12 17:33
 -------------------------------------------------------------
 - updated design doc to show purpose of Foundation FEF and re-assign roles
 =============================================================
-fristL -- 2018-01-__ __:__
+weiwenZ -- 2018-01-12 22:48
 -------------------------------------------------------------
-what you have done
+- deleted the placeholder.txts -> using a json file to store keys
+not txt files
+- also moved them off the github repo
 =============================================================
-fristL -- 2018-01-__ __:__
+weiwenZ -- 2018-01-12 23:52
 -------------------------------------------------------------
-what you have done
+-Got awhere api implemented and used in program
+-javascript updating to simulate planting of chosen crop type
+is implemented in the frontend! major obstacle accomplish!!
 =============================================================
 fristL -- 2018-01-__ __:__
 -------------------------------------------------------------
