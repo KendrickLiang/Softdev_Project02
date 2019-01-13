@@ -1,10 +1,28 @@
 {% extends "template.html" %}
 {% block title %} CamoFlask {% endblock %}
 {% block content %}
-<body onload="updateTime()">
+<body class="body" onload="updateTime()">
 {% endblock %}
 {% block body %}
-    <h1>{{ message }} <span class="text-right" id="time"></span> </h1>
+
+<div class="top-bar">
+    <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+	    <li>
+	        <form action="/viewprofile">
+                    <button class="button primary" type="submit"> View Profile </button>
+		</form>
+	    </li>
+	    <li>
+	        <form action="/logout">
+		    <button class="button primary" type="submit"> Logout </button>
+		</form>
+	    </li>
+	</ul>
+    </div>
+</div>
+
+<h1>{{ message }} <span class="text-right" id="time"></span> </h1>
 
     {% if noFarm %}
         <form  action="/location", method="POST">
@@ -34,15 +52,6 @@
 
     </table>
     {% endif %}
-
-    <form action="/viewprofile">
-        <button type="submit"> View Profile </button>
-    </form>
-    <form action="/logout">
-        <button type="submit"> Logout </button>
-    </form>
-
-    <p><button class="button" data-open="Plant-Modal">Click me for a modal</button></p>
 
     <!-- Plant popup -->
     <div class="reveal" id="Plant-Modal" data-reveal>

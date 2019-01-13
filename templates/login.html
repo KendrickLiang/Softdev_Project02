@@ -1,10 +1,10 @@
 {% extends "template.html" %}
 {% block title %} CamoFlask {% endblock %}
 {% block body %}
-    <h1 class="text-center"> PAY DAY <img style="height: 1em" src="https://img6.androidappsapk.co/300/9/0/2/com.foranj.af.png"> </h1>
+    <h1 id="textbox" class="text-center"> PAY DAY <img style="height: 1em" src="https://img6.androidappsapk.co/300/9/0/2/com.foranj.af.png"> </h1>
 
     <div class="grid-x grid-margin collapse expanded">
-        <div class="small-12 medium-6 column small-order-2 medium-order-1">
+        <div id="textbox" class="small-12 medium-6 column small-order-2 medium-order-1">
             <form action="/authentication" method="POST">
                 <fieldset class="fieldset">
                     <legend> Login </legend>
@@ -18,7 +18,7 @@
                  </fieldset>
             </form>
         </div>
-        <div class="small-12 medium-6 column small-order-1 medium-order-2">
+        <div id="textbox" class="small-12 medium-6 column small-order-1 medium-order-2">
             <form action="/registration" method="POST"">
                 <fieldset class="fieldset">
                     <legend> Register </legend>
