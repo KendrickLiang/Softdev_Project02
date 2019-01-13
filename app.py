@@ -53,11 +53,18 @@ def logout():
 def view():
     return render_template('profile.html', user=session['current_user'], farm=silo.getFarmName('current_user'), crops="Corn", land="9", cash="180")
 
-@app.route("/createFarm", methods=['POST'])
+@app.route("/location", methods=['POST'])
 def createFarm():
+    userInfo = [ request.form['farmName'], request.form['visible'] ]
+    results = [ api.getipLocation(), api.searchLocation(request.form['location']) ]
+    for row in results[1]:
+        print(row)
+    return render_template('location.html', userInput = userInfo, location_query = request.form['location'], location_result = results)
+
+@app.route("/createFarm", methods=['POST'])
+def locationSelection():
     farm.createFarm(session['current_user'], request.form['farmName'], request.form['location'],  100, request.form['visible'])
     return redirect("/")
-
 
 if __name__ == "__main__":
     app.debug = True
