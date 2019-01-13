@@ -30,9 +30,9 @@ def addUser(user, password):
 def checkUser(user, password):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("SELECT EXISTS (SELECT 1 FROM users where username = (?) );", (user))
+    c.execute("SELECT EXISTS (SELECT 1 FROM users where username = (?) );", (user,))
     if c.fetchone()[0]:
-        c.execute("SELECT password FROM users where username = (?);", (user))
+        c.execute("SELECT password FROM users where username = (?);", (user,))
         if c.fetchone()[0] == password:
             db.commit()
             db.close()
@@ -44,7 +44,7 @@ def checkUser(user, password):
 def addFarm(owner, name, location, area, time, map, visible):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    values = (owner, name, location, area, time, '', map, visible)
+    values = (owner, name, location, area, time, '', map, visible,)
     c.execute("INSERT INTO farms values (?, ?, ?, ?, ?, ?, ?, ?);", values)
     db.commit()
     db.close()
@@ -67,7 +67,7 @@ def getFarm(user):
         return ''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("SELECT map FROM farms where owner = (?);", (user))
+    c.execute("SELECT map FROM farms where owner = (?);", (user,))
     farm = silo.mapArray(c.fetchone()[0])
     #print(farm)
     db.commit()
@@ -79,7 +79,7 @@ def getFarmName(user):
         return ''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("SELECT farm_name FROM farms where owner = (?);", (user))
+    c.execute("SELECT farm_name FROM farms where owner = (?);", (user,))
     farmname = c.fetchall()
     db.commit()
     db.close()
@@ -88,7 +88,7 @@ def getFarmName(user):
 def addCrop(user, farm, crop):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("UPDATE farms SET crops = crops || (?) WHERE owner = (?) and farm_name = (?);", (crop, user, farm))
+    c.execute("UPDATE farms SET crops = crops || (?) WHERE owner = (?) and farm_name = (?);", (crop, user, farm,))
     db.commit()
     db.close()
     return True
@@ -99,7 +99,7 @@ def updateMap(user, farm, map):
     '''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("UPDATE farms SET map = (?) WHERE owner = (?) and farm_name = (?);", (map, user, farm))
+    c.execute("UPDATE farms SET map = (?) WHERE owner = (?) and farm_name = (?);", (map, user, farm,))
     db.commit()
     db.close()
     return True
