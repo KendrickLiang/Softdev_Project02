@@ -1,19 +1,37 @@
 {% extends "template.html" %}
 {% block title %} CamoFlask {% endblock %}
 {% block body %}
+    <h1 class="text-center"> PAY DAY <img style="height: 1em" src="https://img6.androidappsapk.co/300/9/0/2/com.foranj.af.png"> </h1>
 
-<div class="box">
-    <div> <h1> WELCOME USER! </h1> </div>
-    <form class="loginbox" action="/authentication" method="POST">
-        Username: <input type="text" name="username"><br>
-        Password: <input type="password" name="password"><br>
-    <button type="submit"> Login </button>
-    </form>
+    <div class="grid-x grid-margin collapse expanded">
+        <div class="small-12 medium-6 column small-order-2 medium-order-1">
+            <form action="/authentication" method="POST">
+                <fieldset class="fieldset">
+                    <legend> Login </legend>
+                    <label> Username
+                         <input type="text" name="username"><br>
+                     </label>
+                     <label> Password
+                          <input type="password" name="password"><br>
+                     </label>
+                     <button class="button primary" type="submit"> Login </button>
+                 </fieldset>
+            </form>
+        </div>
+        <div class="small-12 medium-6 column small-order-1 medium-order-2">
+            <form action="/registration" method="POST"">
+                <fieldset class="fieldset">
+                    <legend> Register </legend>
+                    <label> Username
+                         <input type="text" name="username"><br>
+                     </label>
+                     <label> Password
+                          <input type="password" name="password"><br>
+                     </label>
+                     <button class="button primary" type="submit"> Regster </button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 
-    <form class="registerbox" action="/registration" method="POST">
-        Username: <input type="text" name="username"><br>
-	Password: <input type="password" name="password"><br>
-	<button type="submit"> Register </button>
-    </form>
-</div>
 {% endblock %}

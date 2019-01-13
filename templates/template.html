@@ -9,12 +9,17 @@
         <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
     </head>
     <body>
-        {% set msgs = get_flashed_messages() %}
-        {% for msg in msgs %}
-            <p style="color: red">{{ msg }}</p>
-        {% endfor %}
-        {% block body %} Go away. You should not be here.{% endblock %}
-    <footer style="padding-left: 0.9375rem;"><br>Copyright &copy; 2019 CamoFlask</footer>
+        <div class="grid-y medium-grid-frame">
+            {% set msgs = get_flashed_messages() %}
+            {% for msg in msgs %}
+                <p style="color: red">{{ msg }}</p>
+            {% endfor %}
+            <div style="height:40vw;" class="cell medium-auto medium-cell-block-container">
+                {% block body %} Go away. You should not be here.{% endblock %}
+            </div>
+            <div class="cell shrink footer">
+                <footer class="text-center" style="padding-right: 0.9375rem;"><br>Copyright &copy; 2019 CamoFlask</footer>
+            </div>
     </body>
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
