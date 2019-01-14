@@ -22,10 +22,10 @@
     </div>
 </div>
 
-<h1>{{ message }} <span class="text-right" id="time"></span> </h1>
+<h1 id="textbox">{{ message }} <span class="text-right" id="time"></span> </h1>
 
     {% if noFarm %}
-        <form  action="/location", method="POST">
+        <form  id="textbox" action="/location", method="POST">
             Farm Name : <input type="text" name="farmName"> <br>
             Location : <input type="text" name="location"> <br>
             Visibility: <input type="text" name="visible" placeholder="0-public, 1-private, or 2-friends only"> <br>

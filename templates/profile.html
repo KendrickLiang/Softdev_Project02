@@ -1,19 +1,31 @@
 {% extends "template.html" %}
-{% block title %} {{ username }} {% endblock %}
+{% block title %} {{ user }} {% endblock %}
 {% block body %}
 
+<div id="textbox" class="small-2 rows">
     Username: {{ user }}
-    <br>
+</div>
+<br>
+<div id="textbox" class="small-2 rows">
     Farms Owned: <form action="/">
-	  <button class="button primary" type="submit"> {{farm}} </button>
+    <button class="button primary" type="submit"> {{farm}} </button>
     </form>
-    <br>
+</div>
+<br>
+<div id="textbox" class="small-2 rows">
     Crops Planted: {{ crops }}
-    <br>
+</div>
+<br>
+<div id="textbox" class="small-2 rows">
     Total Farmland: {{ land }}
-    <br>
+</div>
+<br>
+<div id="textbox" class="small-2 rows">
     Total Crops Owned: {{ crops }}
-    <br>
+</div>
+<br>
+<div id="textbox" class="small-2 rows">
     Total Cash: {{ cash }}
+</div>
 
 {% endblock %}
