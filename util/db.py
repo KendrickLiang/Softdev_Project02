@@ -84,7 +84,34 @@ def getFarmName(user):
     db.commit()
     db.close()
     return farmname
-
+def getCrop(user):
+    if not haveFarm(user):
+        return ''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("SELECT crops FROM farms where owner = (?);", (user,))
+    cropname = c.fetchall()
+    db.commit()
+    db.close()
+    return cropname
+def getLand(user):
+    if not haveFarm(user):
+        return ''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("SELECT area FROM farms where owner = (?);", (user,))
+    landarea = c.fetchall()
+    db.commit()
+    db.close()
+    return landarea
+def getCash(user):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("SELECT cash FROM users where username = (?);", (user,))
+    cash = c.fetchall()
+    db.commit()
+    db.close()
+    return cash
 def addCrop(user, farm, crop):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
