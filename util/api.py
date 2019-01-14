@@ -1,6 +1,7 @@
 import json, base64
 import urllib.request as request
 
+from util import db as silo
 def access_info(URL_STUB, header, body):
     '''
     Helper to access the info for a URL. Returns the JSON.
@@ -18,7 +19,8 @@ def searchLocation(query):
         keys = json.load(json_file)
     URL = "http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey="
     API_KEY = keys['accuweather.com']
-    URL_STUB = URL + API_KEY + "&q=" + query
+    print (query)
+    URL_STUB = URL + API_KEY + "&q=" + query.replace(" ", "%20").strip()
     return access_info(URL_STUB, {}, None)
 
 def getipLocation():
@@ -29,10 +31,13 @@ def getipLocation():
     URL_STUB = URL + API_KEY
     return access_info(URL_STUB, {}, None)
 
-def weatherInfo():
-    URL = "api2.climacell.co/v2"
-    #apikey: your-unique-key
-    #Content-Type: application/JSON
+def weatherInfo(user, farm):
+    URL = "http://dataservice.accuweather.com/currentconditions/v1/"
+    with open("keys/keys.json") as json_file:
+        keys = json.load(json_file)
+    API_KEY = keys['accuweather.com']
+    URL_STUB = URL + silo.getLocationKey(user, farm) + "?apikey=" + API_KEY + "&details=True"
+    return access_info(URL_STUB, {}, None)
 
 def getCropInfo():
     '''

@@ -76,8 +76,12 @@ def plantInfo():
         if cropID in model['_links']['awhere:crop'][0]['href']:
             link = model['_links']['self']['href']
     details = api.getModelDetails(link)
-    print(details)
+    #print(details)
     return json.dumps(details);
+
+@app.route("/weatherInfo", methods=['POST'])
+def weatherInfo():
+    return json.dumps(api.weatherInfo(session['current_user'], silo.getFarmName(session['current_user'])[0][0]))
 
 if __name__ == "__main__":
     app.debug = True

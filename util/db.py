@@ -103,3 +103,13 @@ def updateMap(user, farm, map):
     db.commit()
     db.close()
     return True
+
+def getLocationKey(user, farm):
+    print(user, farm)
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("SELECT location FROM farms where owner = (?) and farm_name = (?);", (user, farm,))
+    locationKey = c.fetchone()[0].split(";")[1];
+    db.commit()
+    db.close()
+    return locationKey

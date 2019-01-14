@@ -14,7 +14,7 @@ var crops = [];
 var findCrops = function() {
     for(x = 0; x<farm.length; x++) {
         if (farm[x].innerHTML != "Tree" && farm[x].innerHTML != "Rock" && farm[x].innerHTML != "Dirt") {
-                addCrop(farm[x]);
+                //addCrop(farm[x]);
         }
     }
 }
@@ -69,18 +69,24 @@ var showInfo = function(tile_id) {
     t = farm[num];
     gdd = t.getAttribute("gdd");
     stages = JSON.parse(t.getAttribute('stages'));
-    console.log(typeof stages);
-    console.log(stages);
+    //console.log(typeof stages);
+    //console.log(stages);
     for (index = stages.length-1; index >= 0; index--) {
         if (gdd >= parseInt(stages[index]['gddThreshold']) ) {
             message = "" + t.getAttribute('id') + " : " + t.innerHTML +
-            "\nCurrent GDD : " + t.getAttribute('gdd') +
+            "\nCurrent GDD : " + gdd +
             "\nCurrent Stage : " + stages[index]['id'] +
             "\nDescription : " + stages[index]['description'];
             alert(message);
             index = -1;
+            return '';
         }
     }
+    message = "" + t.getAttribute('id') + " : " + t.innerHTML +
+    "\nCurrent GDD : " + gdd +
+    "\nNo Growth";
+    alert(message);
+    return '';
 }
 
 var updateTime = function() {
@@ -95,10 +101,11 @@ var updateTime = function() {
     h + ":" + m + ":" + s;
 
     // Crop UPDATE
-    for (index = 0; index < crops.length; index++) {
-        crops[index].setAttribute("gdd", parseFloat(crops[index].getAttribute("gdd"))+15);
+    if (true) { // isDay
+        for (index = 0; index < crops.length; index++) {
+            crops[index].setAttribute("gdd", parseFloat(crops[index].getAttribute("gdd"))+15);
+        }
     }
-
     var t = setTimeout(updateTime, 1000);
 }
 
@@ -107,7 +114,34 @@ function checkTime(i) {
   return i;
 }
 
+var current_temperature;
+var isDay;
+var rainBoost;
+
+var getWeather = function(e) {
+    $.post( "/weatherInfo", {
+    }, function(data) {
+        console.log(typeof data);
+        data = JSON.parse(data)['0'];
+        console.log(typeof data);
+        console.log(data);
+        current_temperature = parseFloat(data['Temperature']['Metric']['Value']);
+        if (data['IsDayTime'] == "true") {
+            isDay = true;
+        } else {
+            isDay = false;
+        }
+        if (data['HasPrecipitation'] == "true" && data['PrecipitationType'] == "Rain") {
+            rainBoost = true;
+        } else {
+            rainBoost = false;
+        }
+    });
+    var weather = setTimeout(getWeather, 600000);
+}
+
 var init = function() {
     findCrops();
+    getWeather();
     updateTime();
 }
