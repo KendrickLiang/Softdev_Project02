@@ -13,10 +13,10 @@ for(x = 0; x<farm.length; x++) {
 var tileSelect = function(tile_id) {
     console.log(farm);
     num =  parseInt(tile_id,10);
-    t = farm[num]
-    console.log(tile_id, num, document.getElementById(tile_id), t);
-    current_tile = document.getElementById(tile_id);
-    console.log(current_tile);
+    t = farm[num];
+    //console.log(tile_id, num, document.getElementById(tile_id), t);
+    current_tile = t;
+    //console.log(current_tile);
 }
 
 var plant_crop = function(cropName, cropType) {
