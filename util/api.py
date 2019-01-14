@@ -79,7 +79,8 @@ def getModelDetails(URI):
     api_key = keys['awhere.com']['key']
     api_secret = keys['awhere.com']['secret_key']
     api_URL= "https://api.awhere.com/"
-    URL_STUB = api_URL + URI
+    print(URI)
+    URL_STUB = api_URL + URI + "/details"
     auth_token = get_oauth_token(encode_secret_and_key(api_key, api_secret))
     header = {
         "Authorization": "Bearer %s" % auth_token,

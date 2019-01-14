@@ -68,13 +68,16 @@ def locationSelection():
 
 @app.route("/plantInfo", methods=['POST'])
 def plantInfo():
+    print("HERE")
     models = api.getModels()
     cropID = request.form['cropID']
+    print(cropID)
     for model in models:
         if cropID in model['_links']['awhere:crop'][0]['href']:
             link = model['_links']['self']['href']
     details = api.getModelDetails(link)
-    return ''
+    print(details)
+    return json.dumps(details);
 
 if __name__ == "__main__":
     app.debug = True
