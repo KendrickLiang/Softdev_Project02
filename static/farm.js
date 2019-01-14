@@ -36,32 +36,51 @@ var plant_crop = function(cropName, cropType) {
     if (current_tile != null) {
         console.log(current_tile);
         viewing_tile = current_tile;
-        current_tile.innerHTML = cropName;
-        addCrop(current_tile);
-        current_tile.setAttribute("cropType", cropType);
-        current_tile.setAttribute("gdd", 0);
+        viewing_tile.innerHTML = cropName;
+        addCrop(viewing_tile);
+        viewing_tile.setAttribute("cropType", cropType);
+        viewing_tile.setAttribute("gdd", 0);
 
         $.post( "/plantInfo", {
             "cropID": cropType
         }, function(data) {
-            console.log(data);
-            if (data['gddMaxBoundary'] == null) {
+            //console.log(typeof data);
+            data = JSON.parse(data);
+            //console.log(typeof data);
+            if (""+data['gddMaxBoundary'] == null) {
                 viewing_tile.setAttribute("gdd_max", 30);
             } else {
-                viewing_tile.setAttribute("gdd_max", data['gddMaxBoundary']);
+                viewing_tile.setAttribute("gdd_max", ""+data['gddMaxBoundary']);
             }
-            viewing_tile.setAttribute("gdd_min", data['gddBaseTemp']);
+            //console.log(data['gddMaxBoundary']);
+            viewing_tile.setAttribute("gdd_min", ""+data['gddBaseTemp']);
+            viewing_tile.setAttribute("stages", JSON.stringify(data['stages']));
         });
 
-
-        current_tile.setAttribute("onclick", showInfo());
-        current_tile.removeAttribute("data-open");
+        //console.log("HERE", viewing_tile);
+        viewing_tile.setAttribute("onclick", "showInfo('" + viewing_tile.getAttribute("index") + "')");
+        viewing_tile.removeAttribute("data-open");
         current_tile = null;
     }
 }
 
-var showInfo = function() {
-
+var showInfo = function(tile_id) {
+    num =  parseInt(tile_id,10);
+    t = farm[num];
+    gdd = t.getAttribute("gdd");
+    stages = JSON.parse(t.getAttribute('stages'));
+    console.log(typeof stages);
+    console.log(stages);
+    for (index = stages.length-1; index >= 0; index--) {
+        if (gdd >= parseInt(stages[index]['gddThreshold']) ) {
+            message = "" + t.getAttribute('id') + " : " + t.innerHTML +
+            "\nCurrent GDD : " + t.getAttribute('gdd') +
+            "\nCurrent Stage : " + stages[index]['id'] +
+            "\nDescription : " + stages[index]['description'];
+            alert(message);
+            index = -1;
+        }
+    }
 }
 
 var updateTime = function() {
