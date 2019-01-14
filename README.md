@@ -28,9 +28,4 @@ A farming simulator in which the user can plant crops in a grid representing the
 - accuWeather API
     - Procure an API key [here](https://developer.accuweather.com/). Email registration required.
     - API is used to access geographical data of a given location (i.e. city name)
-- Climacell API
-    - Procure an API key [here](https://developer.climacell.co/docs). Email registration required.
-    - API is used to access real-time weather and forecasts
-- World Weather Online API
-    - Procure an API key [here](https://www.worldweatheronline.com/developer/api/docs/). Click on the register button. Email registration required.
-    - API is used to access historical weather data
+
