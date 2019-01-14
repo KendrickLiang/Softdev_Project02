@@ -23,6 +23,22 @@ var addCrop = function(tile) {
     crops.push(tile);
 }
 
+var removeCrop = function(tile) {
+    crops.splice(crops.indexOf(tile), 1);
+}
+
+var resetTile = function(tile) {
+    tile.innerHTML = "Dirt";
+    tile.removeAttribute("cropType");
+    tile.removeAttribute("gdd");
+    tile.removeAttribute("gdd_max");
+    tile.removeAttribute("gdd_min");
+    tile.removeAttribute("stages");
+    tile.setAttribute("onclick", "tileSelect('" + viewing_tile.getAttribute("index") + "')");
+    tile.setAttribute("data-open", "");
+    removeCrop(tile);
+}
+
 var tileSelect = function(tile_id) {
     console.log(farm);
     num =  parseInt(tile_id,10);
@@ -73,10 +89,22 @@ var showInfo = function(tile_id) {
     //console.log(stages);
     for (index = stages.length-1; index >= 0; index--) {
         if (gdd >= parseInt(stages[index]['gddThreshold']) ) {
-            message = "" + t.getAttribute('id') + " : " + t.innerHTML +
-            "\nCurrent GDD : " + gdd +
-            "\nCurrent Stage : " + stages[index]['id'] +
-            "\nDescription : " + stages[index]['description'];
+            if (index == stages.length-1) {
+                if (gdd >= 2 * parseInt(stages[index]['gddThreshold'])) {
+                    message = "" + t.getAttribute('id') + " : " + t.innerHTML +
+                    "\nat GDD of " + gdd + " has rotted away\nBetter luck next time!";
+                    resetTile(t);
+                } else {
+                    message = "" + t.getAttribute('id') + " : " + t.innerHTML +
+                    "\nat GDD of " + gdd + " has been harvested\n+$10 to account";
+                    resetTile(t);
+                }
+            } else {
+                message = "" + t.getAttribute('id') + " : " + t.innerHTML +
+                "\nCurrent GDD : " + gdd +
+                "\nCurrent Stage : " + stages[index]['id'] +
+                "\nDescription : " + stages[index]['description'];
+            }
             alert(message);
             index = -1;
             return '';
@@ -104,6 +132,13 @@ var updateTime = function() {
     if (true) { // isDay
         for (index = 0; index < crops.length; index++) {
             crops[index].setAttribute("gdd", parseFloat(crops[index].getAttribute("gdd"))+15);
+            //gdd = crops[index].getAttribute("gdd");
+            //stages = JSON.parse(crops[index].getAttribute('stages'))
+            //if (gdd >= 2 * parseInt(stages[stages.length-1]['gddThreshold'])) {
+            //    message = "" + t.getAttribute('id') + " : " + t.innerHTML +
+            //    "\nat GDD of " + gdd + " has rotted away\nBetter luck next time!";
+            //    resetTile(t);
+            //}
         }
     }
     var t = setTimeout(updateTime, 1000);
