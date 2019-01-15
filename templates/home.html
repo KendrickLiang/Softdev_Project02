@@ -57,7 +57,7 @@
     <div class="reveal" id="Plant-Modal" data-reveal>
         <h1>What crop would you like to plant?</h1>
         {% for crop in cropTypes['crops'] %}
-            <button class="button primary" data-close onclick = "plant_crop('{{ crop['name'] }}', '{{ crop['id']}}' );">{{ crop['name'] }}-{{ crop['variety'] }}</button>
+            <button class="button primary" data-close onclick = "plant_crop('{{ crop['name'] }}', '{{ crop['id']}}' );">{{ crop['name'] }}</button>
         {% endfor %}
 	<!--
         <button class="close-button" id="modal-button" data-close aria-label="Close modal" type="button">
