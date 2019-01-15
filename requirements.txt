@@ -17,7 +17,7 @@ dirspec==13.10
 duplicity==0.7.17
 enum34==1.1.6
 fasteners==0.12.0
-Flask==0.12.2
+Flask==1.0.2
 futures==3.2.0
 greenlet==0.4.12
 html5lib==0.999999999
@@ -28,13 +28,11 @@ incremental==16.10.1
 ipaddress==1.0.17
 ipython==5.5.0
 ipython-genutils==0.2.0
-itsdangerous==0.24
+itsdangerous==1.1.0
 Jinja2==2.10
-keyring==10.6.0
-keyrings.alt==3.0
 lockfile==0.12.2
 lxml==4.2.1
-MarkupSafe==1.0
+MarkupSafe==1.1.0
 matplotlib==2.1.1
 mercurial==4.5.3
 monotonic==1.0
@@ -79,7 +77,6 @@ rope==0.10.5
 ropemacs==0.8
 ropemode==0.4
 scandir==1.7
-SecretStorage==2.3.1
 service-identity==16.0.0
 simplegeneric==0.8.1
 simplejson==3.13.2
@@ -90,7 +87,7 @@ traitlets==4.3.2
 trollius==2.0.1
 Twisted==17.9.0
 unity-lens-photos==1.0
-virtualenv==15.1.0
+virtualenv==16.2.0
 wcwidth==0.1.7
 webencodings==0.5
 Werkzeug==0.14.1
