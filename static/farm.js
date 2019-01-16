@@ -12,9 +12,10 @@ for(x = 0; x<farm.length; x++) {
 
 var crops = [];
 var findCrops = function() {
-    $.post( "/weatherInfo", {
+    $.post( "/getCrop", {
     }, function(data) {
         data = JSON.parse(data);
+        console.log(data);
         list = data['cropList'].split(";");
         for(x = 0; x < list.length; x++) {
             attributes = list[x].split("$?");
@@ -137,7 +138,7 @@ var updateTime = function() {
     var m = today.getMinutes();
     var s = today.getSeconds();
     m = checkTime(m);
-    s = checkTime(s);
+    s = checkTime(s);``
     document.getElementById('time').innerHTML =
     h + ":" + m + ":" + s;
 
@@ -189,14 +190,15 @@ var getWeather = function(e) {
 }
 
 var updateCash = function(num) {
-    $.post("/updateCash"), {
-        "cash": num
+    data = {
+        'cashNum': num
     }
+    $.post("/updateCash", data)
 }
 
 var saveMap = function() {
     var map = "";
-    var cropListing;
+    var cropListing = "";
     var count = 0;
     for(x = 0; x<farm.length; x++) {
         if (count == 9) {
@@ -204,7 +206,7 @@ var saveMap = function() {
             count = 0;
         } else {
             map += farm[x].innerHTML + ",";
-            count++;
+            count += 1;
         }
     }
     for (x = 0; x<crops.length; x++) {
@@ -217,10 +219,11 @@ var saveMap = function() {
             crops[x].getAttribute('gdd_min') + "$?" +
             crops[x].getAttribute('stages') + ";";
     }
-    $.post("/updateMap", {
-        "map": map,
-        "cropList": cropListing
-    })
+    dataSent = {
+        'map': map,
+        'cropsMap': cropListing
+    }
+    $.post("/updateMap", dataSent);
 }
 
 var init = function() {

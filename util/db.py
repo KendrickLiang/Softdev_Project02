@@ -85,7 +85,7 @@ def getFarmName(user):
     db.close()
     return farmname
 
-def getCrop(user):
+def getCrop(user, farm):
     if not haveFarm(user):
         return ''
     db = sqlite3.connect(DB_FILE)

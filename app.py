@@ -89,11 +89,11 @@ def weatherInfo():
 
 @app.route("/updateCash", methods=['POST'])
 def updateCash():
-    silo.updateCash(request.form['cash'], session['current_user'])
+    silo.updateCash(request.form['cashNum'], session['current_user'])
 
 @app.route("/updateMap", methods=['POST'])
 def updateMap():
-    silo.updateCrop(session['current_user'], silo.getFarmName(session['current_user'])[0][0], request.form['cropList'])
+    silo.updateCrop(session['current_user'], silo.getFarmName(session['current_user'])[0][0], request.form['cropsMap'])
     silo.updateMap(session['current_user'], silo.getFarmName(session['current_user'])[0][0], request.form['map'])
     return ''
 
