@@ -172,7 +172,7 @@ weiwenZ -- 2018-01-14 03:07
 -------------------------------------------------------------
 - Harvesting Done
 =============================================================
-zaneW -- 2018-01-15 01:59
+zaneW -- 2018-01-16 01:59
 -------------------------------------------------------------
 - Added foundation grid to the modal (pop-up) to look cleaner
 =============================================================
@@ -182,9 +182,11 @@ weiwenZ -- 2018-01-16 02:07
 incorrect. Need to be address ASAP. Have not implemented save
 feature. In testing phase.
 =============================================================
-fristL -- 2018-01-__ __:__
+zaneW -- 2018-01-16 02:41
 -------------------------------------------------------------
-what you have done
+- Added css to the table, will now have background images 
+for better ux
+- Will add images for plants, that will change as plants grow
 =============================================================
 fristL -- 2018-01-__ __:__
 -------------------------------------------------------------
