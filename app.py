@@ -15,7 +15,11 @@ app.secret_key = os.urandom(64)
 def index():
     if 'current_user' in session:
         print(not silo.haveFarm(session['current_user']))
-        return render_template('home.html', farm=silo.getFarm(session['current_user']), message='WELCOME '+session['current_user'], noFarm=not silo.haveFarm(session['current_user']), cropTypes = api.getCropInfo())
+        return render_template('home.html',
+        farm=silo.getFarm(session['current_user']),
+        message='WELCOME '+ session['current_user'],
+        noFarm=not silo.haveFarm(session['current_user']),
+        cropTypes = api.getCropInfo())
     return render_template('login.html', title="Login")
 
 @app.route("/authentication", methods=['POST'])
@@ -82,6 +86,21 @@ def plantInfo():
 @app.route("/weatherInfo", methods=['POST'])
 def weatherInfo():
     return json.dumps(api.weatherInfo(session['current_user'], silo.getFarmName(session['current_user'])[0][0]))
+
+@app.route("/updateCash", methods=['POST'])
+def updateCash():
+    silo.updateCash(request.form['cash'], session['current_user'])
+
+@app.route("/updateMap", methods=['POST'])
+def updateMap():
+    silo.updateCrop(session['current_user'], silo.getFarmName(session['current_user'])[0][0], request.form['cropList'])
+    silo.updateMap(session['current_user'], silo.getFarmName(session['current_user'])[0][0], request.form['map'])
+    return ''
+
+@app.route("/getCrop", methods=['POST'])
+def getCropList():
+    cropList = silo.getCrop(session['current_user'], silo.getFarmName(session['current_user'])[0][0])
+    return json.dumps({'cropList': cropList})
 
 if __name__ == "__main__":
     app.debug = True

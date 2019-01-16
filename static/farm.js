@@ -12,11 +12,23 @@ for(x = 0; x<farm.length; x++) {
 
 var crops = [];
 var findCrops = function() {
-    for(x = 0; x<farm.length; x++) {
-        if (farm[x].innerHTML != "Tree" && farm[x].innerHTML != "Rock" && farm[x].innerHTML != "Dirt") {
-                //addCrop(farm[x]);
+    $.post( "/weatherInfo", {
+    }, function(data) {
+        data = JSON.parse(data);
+        list = data['cropList'].split(";");
+        for(x = 0; x < list.length; x++) {
+            attributes = list[x].split("$?");
+            target = farm[parseInt(list[0])];
+            target.setAttribute("cropType", list[1]);
+            target.setAttribute("gdd", list[2]);
+            target.setAttribute("gdd_max", list[3]);
+            target.setAttribute("gdd_min", list[4]);
+            target.setAttribute("stages", list[5]);
+            target.setAttribute("onclick", "showInfo('" + list[0] + "')");
+            target.removeAttribute("data-open");
+            addCrop(target);
         }
-    }
+    })
 }
 
 var addCrop = function(tile) {
@@ -97,6 +109,7 @@ var showInfo = function(tile_id) {
                 } else {
                     message = "" + t.getAttribute('id') + " : " + t.innerHTML +
                     "\nat GDD of " + gdd + " has been harvested\n+$10 to account";
+                    updateCash(10);
                     resetTile(t);
                 }
             } else {
@@ -173,6 +186,41 @@ var getWeather = function(e) {
         }
     });
     var weather = setTimeout(getWeather, 600000);
+}
+
+var updateCash = function(num) {
+    $.post("/updateCash"), {
+        "cash": num
+    }
+}
+
+var saveMap = function() {
+    var map = "";
+    var cropListing;
+    var count = 0;
+    for(x = 0; x<farm.length; x++) {
+        if (count == 9) {
+            map += farm[x].innerHTML + ";";
+            count = 0;
+        } else {
+            map += farm[x].innerHTML + ",";
+            count++;
+        }
+    }
+    for (x = 0; x<crops.length; x++) {
+        // index;,cropType;,gdd;,gdd_max;,gdd_min;,stages;
+        cropListing +=
+            crops[x].getAttribute('index') + "$?" +
+            crops[x].getAttribute('cropType') + "$?" +
+            crops[x].getAttribute('gdd') + "$?" +
+            crops[x].getAttribute('gdd_max') + "$?" +
+            crops[x].getAttribute('gdd_min') + "$?" +
+            crops[x].getAttribute('stages') + ";";
+    }
+    $.post("/updateMap", {
+        "map": map,
+        "cropList": cropListing
+    })
 }
 
 var init = function() {

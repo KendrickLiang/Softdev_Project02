@@ -84,16 +84,18 @@ def getFarmName(user):
     db.commit()
     db.close()
     return farmname
+
 def getCrop(user):
     if not haveFarm(user):
         return ''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("SELECT crops FROM farms where owner = (?);", (user,))
-    cropname = c.fetchall()
+    c.execute("SELECT crops FROM farms where owner = (?) and farm_name = (?);", (user,farm,))
+    cropList = c.fetchone()[0]
     db.commit()
     db.close()
-    return cropname
+    return cropList
+
 def getLand(user):
     if not haveFarm(user):
         return ''
@@ -104,6 +106,7 @@ def getLand(user):
     db.commit()
     db.close()
     return landarea
+
 def getCash(user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
@@ -112,10 +115,11 @@ def getCash(user):
     db.commit()
     db.close()
     return cash
-def addCrop(user, farm, crop):
+
+def updateCrop(user, farm, crop):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("UPDATE farms SET crops = crops || (?) WHERE owner = (?) and farm_name = (?);", (crop, user, farm,))
+    c.execute("UPDATE farms SET crops = (?) WHERE owner = (?) and farm_name = (?);", (crop, user, farm,))
     db.commit()
     db.close()
     return True
@@ -127,6 +131,14 @@ def updateMap(user, farm, map):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("UPDATE farms SET map = (?) WHERE owner = (?) and farm_name = (?);", (map, user, farm,))
+    db.commit()
+    db.close()
+    return True
+
+def updateCash(num, user):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("UPDATE users SET cash = cash || (?) WHERE username = (?);", (num, user,))
     db.commit()
     db.close()
     return True
