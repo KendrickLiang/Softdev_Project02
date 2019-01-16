@@ -56,9 +56,12 @@
     <!-- Plant popup -->
     <div class="reveal" id="Plant-Modal" data-reveal>
         <h1>What crop would you like to plant?</h1>
-        {% for crop in cropTypes['crops'] %}
-            <button class="button primary" data-close onclick = "plant_crop('{{ crop['name'] }}', '{{ crop['id']}}' );">{{ crop['name'] }}</button>
-        {% endfor %}
+	<div class="grid-x grid-margin">
+          {% for crop in cropTypes['crops'] %}
+	    <div class="small-2 column">
+            <button class="button primary" data-close onclick = "plant_crop('{{ crop['name'] }}', '{{ crop['id']}}' );">{{ crop['name'] }}</button></div>
+            {% endfor %}
+	    </div>
 	<!--
         <button class="close-button" id="modal-button" data-close aria-label="Close modal" type="button">
             <span aria-hidden="true">&times;</span>
