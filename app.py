@@ -16,10 +16,11 @@ def index():
     if 'current_user' in session:
         #print(not silo.haveFarm(session['current_user']))
         if not silo.haveFarm(session['current_user']):
-            return render_template('home.html')
+            return render_template('home.html', cash = silo.getCash(session['current_user']))
         else:
             return render_template('home.html',
                 farm=silo.getFarm(session['current_user'], silo.getFarmName(session['current_user'])[0][0]),
+                cash = silo.getCash(session['current_user']),
                 message='WELCOME '+  silo.getFarmName(session['current_user'])[0][0] + session['current_user'] ,
                 noFarm=silo.haveFarm(session['current_user']),
                 cropTypes = api.getCropInfo())

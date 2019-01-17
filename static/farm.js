@@ -199,6 +199,7 @@ var updateCash = function(num) {
         'cashNum': num
     }
     $.post("/updateCash", data)
+    document.getElementById('cashAmount').innerHTML = parseInt(document.getElementById('cashAmount').innerHTML) + num;
 }
 
 var saveMap = function() {
@@ -224,6 +225,7 @@ var saveMap = function() {
             crops[x].getAttribute('gdd_min') + "$?" +
             crops[x].getAttribute('stages') + ";";
     }
+    document.getElementById('save_time').innerHTML = document.getElementById('time').innerHTML
     dataSent = {
         'map': map,
         'cropsMap': cropListing
