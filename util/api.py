@@ -15,27 +15,27 @@ def access_info(URL_STUB, header, body):
     return info
 
 def searchLocation(query):
-    with open("keys/keys.json") as json_file:
+    with open("accuWeather.json") as json_file:
         keys = json.load(json_file)
     URL = "http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey="
-    API_KEY = keys['accuweather.com']
+    API_KEY = keys['key']
     print (query)
     URL_STUB = URL + API_KEY + "&q=" + query.replace(" ", "%20").strip()
     return access_info(URL_STUB, {}, None)
 
 def getipLocation():
     URL = "http://dataservice.accuweather.com/locations/v1/cities/ipaddress?apikey="
-    with open("keys/keys.json") as json_file:
+    with open("accuWeather.json") as json_file:
         keys = json.load(json_file)
-    API_KEY = keys['accuweather.com']
+    API_KEY = keys['key']
     URL_STUB = URL + API_KEY
     return access_info(URL_STUB, {}, None)
 
 def weatherInfo(user, farm):
     URL = "http://dataservice.accuweather.com/currentconditions/v1/"
-    with open("keys/keys.json") as json_file:
+    with open("accuWeather.json") as json_file:
         keys = json.load(json_file)
-    API_KEY = keys['accuweather.com']
+    API_KEY = keys['key']
     URL_STUB = URL + silo.getLocationKey(user, farm) + "?apikey=" + API_KEY + "&details=True"
     return access_info(URL_STUB, {}, None)
 
@@ -43,10 +43,11 @@ def getCropInfo():
     '''
         Returns listing of all crop types provided by awhere.
     '''
-    with open("keys/keys.json") as json_file:
+    with open("aWhere.json") as json_file:
         keys = json.load(json_file)
-    api_key = keys['awhere.com']['key']
-    api_secret = keys['awhere.com']['secret_key']
+
+    api_key = keys['0']['key']
+    api_secret = keys['0']['secret_key']
     api_URL= "https://api.awhere.com/"
     URI = "v2/agronomics/crops"
     URL_STUB = api_URL + URI
@@ -61,10 +62,11 @@ def getModels():
     '''
         Get Model listing
     '''
-    with open("keys/keys.json") as json_file:
+    with open("aWhere.json") as json_file:
         keys = json.load(json_file)
-    api_key = keys['awhere.com']['key']
-    api_secret = keys['awhere.com']['secret_key']
+
+    api_key = keys['0']['key']
+    api_secret = keys['0']['secret_key']
     api_URL= "https://api.awhere.com/"
     URI = "v2/agronomics/models"
     URL_STUB = api_URL + URI
@@ -75,14 +77,20 @@ def getModels():
     data = access_info(URL_STUB, header, None)
     return data['models']
 
+
+
+
+
+
 def getModelDetails(URI):
     '''
         Get a specific models details
     '''
-    with open("keys/keys.json") as json_file:
+    with open("aWhere.json") as json_file:
         keys = json.load(json_file)
-    api_key = keys['awhere.com']['key']
-    api_secret = keys['awhere.com']['secret_key']
+
+    api_key = keys['0']['key']
+    api_secret = keys['0']['secret_key']
     api_URL= "https://api.awhere.com/"
     print(URI)
     URL_STUB = api_URL + URI + "/details"

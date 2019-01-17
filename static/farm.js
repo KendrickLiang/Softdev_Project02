@@ -50,7 +50,7 @@ var resetTile = function(tile) {
     tile.removeAttribute("gdd_max");
     tile.removeAttribute("gdd_min");
     tile.removeAttribute("stages");
-    tile.setAttribute("class", "farm-tile")
+    tile.setAttribute("class", "farm-tile Dirt")
     tile.setAttribute("onclick", "tileSelect('" + viewing_tile.getAttribute("index") + "')");
     tile.setAttribute("data-open", "");
     removeCrop(tile);

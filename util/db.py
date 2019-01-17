@@ -62,12 +62,12 @@ def haveFarm(user):
     db.close()
     return False
 
-def getFarm(user):
+def getFarm(user, farm):
     if not haveFarm(user):
         return ''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("SELECT map FROM farms where owner = (?);", (user,))
+    c.execute("SELECT map FROM farms where owner = (?) and password = (?);", (user,farm,))
     farm = silo.mapArray(c.fetchone()[0])
     #print(farm)
     db.commit()
