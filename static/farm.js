@@ -12,22 +12,25 @@ for(x = 0; x<farm.length; x++) {
 
 var crops = [];
 var findCrops = function() {
+    var tiles = document.getElementsByClassName('farm-tile');
     $.post( "/getCrop", {
     }, function(data) {
         data = JSON.parse(data);
         console.log(data);
         list = data['cropList'].split(";");
-        for(x = 0; x < list.length; x++) {
-            attributes = list[x].split("$?");
-            target = farm[parseInt(list[0])];
-            target.setAttribute("cropType", list[1]);
-            target.setAttribute("gdd", list[2]);
-            target.setAttribute("gdd_max", list[3]);
-            target.setAttribute("gdd_min", list[4]);
-            target.setAttribute("stages", list[5]);
-            target.setAttribute("onclick", "showInfo('" + list[0] + "')");
-            target.removeAttribute("data-open");
-            addCrop(target);
+        if (list[0] != "")  {
+            for(x = 0; x < list.length; x++) {
+                attributes = list[x].split("$?");
+                target = tiles[parseInt(list[0])];
+                target.setAttribute("cropType", list[1]);
+                target.setAttribute("gdd", list[2]);
+                target.setAttribute("gdd_max", list[3]);
+                target.setAttribute("gdd_min", list[4]);
+                target.setAttribute("stages", list[5]);
+                target.setAttribute("onclick", "showInfo('" + list[0] + "')");
+                target.removeAttribute("data-open");
+                addCrop(target);
+            }
         }
     })
 }
@@ -47,6 +50,7 @@ var resetTile = function(tile) {
     tile.removeAttribute("gdd_max");
     tile.removeAttribute("gdd_min");
     tile.removeAttribute("stages");
+    tile.setAttribute("class", "farm-tile")
     tile.setAttribute("onclick", "tileSelect('" + viewing_tile.getAttribute("index") + "')");
     tile.setAttribute("data-open", "");
     removeCrop(tile);
@@ -87,6 +91,7 @@ var plant_crop = function(cropName, cropType) {
         });
 
         //console.log("HERE", viewing_tile);
+        viewing_tile.setAttribute("class", "farm-tile " + viewing_tile.innerHTML)
         viewing_tile.setAttribute("onclick", "showInfo('" + viewing_tile.getAttribute("index") + "')");
         viewing_tile.removeAttribute("data-open");
         current_tile = null;
@@ -138,7 +143,7 @@ var updateTime = function() {
     var m = today.getMinutes();
     var s = today.getSeconds();
     m = checkTime(m);
-    s = checkTime(s);``
+    s = checkTime(s);
     document.getElementById('time').innerHTML =
     h + ":" + m + ":" + s;
 
