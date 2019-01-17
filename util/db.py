@@ -67,7 +67,7 @@ def getFarm(user, farm):
         return ''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("SELECT map FROM farms where owner = (?) and password = (?);", (user,farm,))
+    c.execute("SELECT map FROM farms where owner = (?) and farm_name = (?);", (user,farm,))
     farm = silo.mapArray(c.fetchone()[0])
     print("what are you here",farm)
     db.commit()
