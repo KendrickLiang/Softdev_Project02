@@ -15,7 +15,7 @@ def access_info(URL_STUB, header, body):
     return info
 
 def searchLocation(query):
-    with open("accuWeather.json") as json_file:
+    with open("keys/accuWeather.json") as json_file:
         keys = json.load(json_file)
     URL = "http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey="
     API_KEY = keys['key']
@@ -25,7 +25,7 @@ def searchLocation(query):
 
 def getipLocation():
     URL = "http://dataservice.accuweather.com/locations/v1/cities/ipaddress?apikey="
-    with open("accuWeather.json") as json_file:
+    with open("keys/accuWeather.json") as json_file:
         keys = json.load(json_file)
     API_KEY = keys['key']
     URL_STUB = URL + API_KEY
@@ -33,7 +33,7 @@ def getipLocation():
 
 def weatherInfo(user, farm):
     URL = "http://dataservice.accuweather.com/currentconditions/v1/"
-    with open("accuWeather.json") as json_file:
+    with open("keys/accuWeather.json") as json_file:
         keys = json.load(json_file)
     API_KEY = keys['key']
     URL_STUB = URL + silo.getLocationKey(user, farm) + "?apikey=" + API_KEY + "&details=True"
@@ -43,7 +43,7 @@ def getCropInfo():
     '''
         Returns listing of all crop types provided by awhere.
     '''
-    with open("aWhere.json") as json_file:
+    with open("keys/aWhere.json") as json_file:
         keys = json.load(json_file)
 
     api_key = keys['0']['key']
@@ -62,7 +62,7 @@ def getModels():
     '''
         Get Model listing
     '''
-    with open("aWhere.json") as json_file:
+    with open("keys/aWhere.json") as json_file:
         keys = json.load(json_file)
 
     api_key = keys['0']['key']
@@ -86,7 +86,7 @@ def getModelDetails(URI):
     '''
         Get a specific models details
     '''
-    with open("aWhere.json") as json_file:
+    with open("keys/aWhere.json") as json_file:
         keys = json.load(json_file)
 
     api_key = keys['0']['key']
