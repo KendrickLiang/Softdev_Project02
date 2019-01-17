@@ -19,56 +19,56 @@
     opacity: .8;
 }
 
-.rock {
-    background-image: url('static', filename='rock.png');
+.Rock {
+    background-image: url('./rock.png');
 }
 
-.tree {
-    background-image: url('static', filename='tree.png');
+.Tree {
+    background-image: url('./tree.png');
     color: white;
 }
 
-.dirt {
-    background-image: url('static', filename='dirt.png');
+.Dirt {
+    background-image: url('./dirt.png');
     color: white;
 }
 
 .barley {
-    background-image: url('static', filename='barley.png');
+    background-image: url('./barley.png');
 }
 
 .canola {
-    background-image: url('static', filename='canola.png');
+    background-image: url('./canola.png');
 }
 
 .cotton {
-    background-image: url('static', filename='cotton.png');
+    background-image: url('./cotton.png');
 }
 
 .oat {
-    background-image: url('static', filename='oat.png');
+    background-image: url('./oat.png');
 }
     
 .sunflower {
-    background-image: url('static', filename='sunflower.png');
+    background-image: url('./sunflower.png');
 }
 
 .sugarbeet {
-    background-image: url('static', filename='sugarbeet.png');
+    background-image: url('./sugarbeet.png');
 }
 
 .wheat {
-    background-image: url('static', filename='wheat.png');
+    background-image: url('./wheat.png');
 }
 
 .corn {
-    background-image: url('static', filename='corn.png');
+    background-image: url('./corn.png');
 }
 
 .sprout {
-    background-image: url('static', filename='sprout.png');
+    background-image: url('./sprout.png');
 }
 
 .rot {
-    background-image: url('static', filename='rot.png');
+    background-image: url('./rot.png');
 }
