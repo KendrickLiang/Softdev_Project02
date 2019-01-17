@@ -10,7 +10,7 @@ def createTables():
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     #Creating our tables in our database
-    c.execute("CREATE TABLE IF NOT EXISTS users (username TEXT PRIMARY KEY, password TEXT, cash REAL, friends TEXT);")
+    c.execute("CREATE TABLE IF NOT EXISTS users (username TEXT PRIMARY KEY, password TEXT, cash INT, friends TEXT);")
     c.execute("CREATE TABLE IF NOT EXISTS farms(owner TEXT, farm_name TEXT, location TEXT, area INT, start_time INT, crops TEXT, map BLOB, visible INT);")
     c.execute("CREATE TABLE IF NOT EXISTS trades(user TEXT, item TEXT, count INT, cost REAL);")
     db.commit()
@@ -102,7 +102,7 @@ def getLand(user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("SELECT area FROM farms where owner = (?);", (user,))
-    landarea = c.fetchall()
+    landarea = c.fetchone()[0]
     db.commit()
     db.close()
     return landarea
@@ -111,7 +111,7 @@ def getCash(user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("SELECT cash FROM users where username = (?);", (user,))
-    cash = c.fetchone()
+    cash = c.fetchone()[0]
     db.commit()
     db.close()
     return cash
@@ -138,7 +138,8 @@ def updateMap(user, farm, map):
 def updateCash(num, user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("UPDATE users SET cash = cash || (?) WHERE username = (?);", (num, user,))
+    new_amount = getCash(user) + num
+    c.execute("UPDATE users SET cash = (?) WHERE username = (?);", (new_amount, user,))
     db.commit()
     db.close()
     return True
