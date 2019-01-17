@@ -52,7 +52,7 @@ def addFarm(owner, name, location, area, time, map, visible):
 def haveFarm(user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    print('what is in user here', user)
+    #print('what is in user here', user)
     c.execute("SELECT EXISTS (SELECT 1 FROM farms where owner = (?) );", (user,))
     if c.fetchone()[0]:
         db.commit()
@@ -69,7 +69,7 @@ def getFarm(user, farm):
     c = db.cursor()
     c.execute("SELECT map FROM farms where owner = (?) and password = (?);", (user,farm,))
     farm = silo.mapArray(c.fetchone()[0])
-    #print(farm)
+    print("what are you here",farm)
     db.commit()
     db.close()
     return farm

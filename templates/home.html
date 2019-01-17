@@ -1,103 +1,101 @@
 {% extends "template.html" %}
 {% block title %} CamoFlask {% endblock %}
+{% block content %}
+<body class="body" onload="">
+{% endblock %}
+{% block body %}
 {% if noFarm %}
-    {% block content %}
-        <body class="body">
-    {% endblock %}
-    {% block body %}
         <div class="top-bar">
             <div class="top-bar-right">
                 <ul class="dropdown menu" data-dropdown-menu>
-                <li>
-        	       <p> {{cash}} </p>
-        	    </li>
-        	    <li>
-        	        <form action="/viewprofile">
+                    <li>
+            	       <p> {{cash}} </p>
+            	    </li>
+            	    <li>
+                        <form action="/viewprofile">
                             <button class="button primary" type="submit"> View Profile </button>
-        		</form>
-        	    </li>
-        	    <li>
-        	        <form action="/logout">
-        		    <button class="button primary" type="submit"> Logout </button>
-        		</form>
-        	    </li>
-        	</ul>
+                        </form>
+            	    </li>
+            	    <li>
+                        <form action="/logout">
+                            <button class="button primary" type="submit"> Logout </button>
+                        </form>
+            	    </li>
+            	</ul>
+                </div>
             </div>
-        </div>
-
-        <form  id="textbox" action="/location", method="POST">
-            Farm Name : <input type="text" name="farmName"> <br>
-            Location : <input type="text" name="location"> <br>
-            Visibility: <input type="text" name="visible" placeholder="0-public, 1-private, or 2-friends only"> <br>
-            <button type="submit"> Create Farm </button>
-        </form>
-    {% endblock %}
-{% else %}
-    {% block content %}
-    <body class="body" onload="init()">
-    {% endblock %}
-    {% block body %}
+            <form  id="textbox" action="/location", method="POST">
+                Farm Name : <input type="text" name="farmName"> <br>
+                Location : <input type="text" name="location"> <br>
+                Visibility: <input type="text" name="visible" placeholder="0-public, 1-private, or 2-friends only"> <br>
+                <button type="submit"> Create Farm </button>
+            </form>
+    {% else %}
         <div class="top-bar">
-            <div class="top-bar-right">
-                <ul class="dropdown menu" data-dropdown-menu>
-                <li>
-                    <button class="button primary" onclick="saveMap()"> Save </button>
-        	    </li>
-                <li>
-        	       <p id="cashAmount"> {{cash}} </p>
-        	    </li>
-        	    <li>
-        	        <form action="/viewprofile">
-                            <button class="button primary" type="submit"> View Profile </button>
-        		</form>
-        	    </li>
-        	    <li>
-        	        <form action="/logout">
-        		    <button class="button primary" type="submit"> Logout </button>
-        		</form>
-        	    </li>
-        	</ul>
+                <div class="top-bar-right">
+                    <ul class="dropdown menu" data-dropdown-menu>
+                    <li>
+                        <button class="button primary" onclick="saveMap()"> Save </button>
+            	    </li>
+                    <li>
+            	       <p id="cashAmount"> {{cash}} </p>
+            	    </li>
+            	    <li>
+            	        <form action="/viewprofile">
+                                <button class="button primary" type="submit"> View Profile </button>
+            		</form>
+            	    </li>
+            	    <li>
+            	        <form action="/logout">
+            		    <button class="button primary" type="submit"> Logout </button>
+            		</form>
+            	    </li>
+            	</ul>
+                </div>
             </div>
-        </div>
 
 
-        <h1 id="textbox">
-            {{ message }}
-            <span class="text-right" id="time"></span>
-            <span class="text-right" id="save_time"></span>
-        </h1>
-        <table class="farm">
-            {% set counter = 0 %}
-            {% for row in farm %}
-                {% set y = loop.index0 %}
-                <tr>
-                    {% for tile in row %}
-                        {% if tile == 'Dirt' %}
-                            <td class="farm-tile {{tile}}" data-open="Plant-Modal" index="{{y}}{{loop.index0}}" id="{{y}}{{loop.index0}}" onclick = "tileSelect('{{y}}{{loop.index0}}')">{{tile}}</td>
-                        {% else %}
-                            <td class="farm-tile {{tile}}">{{tile}}</td>
-                        {% endif %}
-                    {% endfor %}
-                </tr>
-            {% endfor %}
-
-        </table>
-
-        <!-- Plant popup -->
-        <div class="reveal" id="Plant-Modal" data-reveal>
-            <h1>What crop would you like to plant?</h1>
-    	<div class="grid-x grid-margin">
-              {% for crop in cropTypes['crops'] %}
-    	    <div class="small-2 column">
-                <button class="button primary" data-close onclick = "plant_crop('{{ crop['name'] }}', '{{ crop['id']}}' );">{{ crop['name'] }}</button></div>
+            <h1>
+                {{ message }}
+                <span class="text-right" id="time"></span>
+                <span class="text-right" id="save_time"></span>
+            </h1>
+            <table class="farm">
+                {% set counter = 0 %}
+                {% for row in farm %}
+                    {% set y = loop.index0 %}
+                    <tr>
+                        {% for tile in row %}
+                            {% if tile == 'Dirt' %}
+                                <td class="farm-tile {{tile}}" data-open="Plant-Modal" index="{{y}}{{loop.index0}}" id="{{y}}{{loop.index0}}" onclick = "tileSelect('{{y}}{{loop.index0}}')">{{tile}}</td>
+                            {% else %}
+                                <td class="farm-tile {{tile}}">{{tile}}</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
-    	    </div>
-    	<!--
-            <button class="close-button" id="modal-button" data-close aria-label="Close modal" type="button">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        -->
-        </div>
 
-    {% endblock %}
-{% endif %}
+            </table>
+
+            <!-- Plant popup -->
+            <div class="reveal" id="Plant-Modal" data-reveal>
+                <h1>What crop would you like to plant?</h1>
+        	<div class="grid-x grid-margin">
+                  {% for crop in cropTypes['crops'] %}
+        	    <div class="small-2 column">
+                    <button class="button primary" data-close onclick = "plant_crop('{{ crop['name'] }}', '{{ crop['id']}}' );">{{ crop['name'] }}</button></div>
+                    {% endfor %}
+        	    </div>
+        	<!--
+                <button class="close-button" id="modal-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            -->
+            </div>
+
+            <script type="text/javascript">
+                onload = init();
+            </script>
+
+    {% endif %}
+{% endblock %}
