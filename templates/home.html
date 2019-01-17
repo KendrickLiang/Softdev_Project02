@@ -39,9 +39,7 @@
             <tr>
                 {% for tile in row %}
                     {% if tile == 'Dirt' %}
-                        <td class="farm-tile {{tile}}" data-open="Plant-Modal" index="{{y}}{{loop.index0}}" id="{{y}}{{loop.index0}}" onclick = "tileSelect('{{y}}{{loop.index0}}')">
-                            {{tile}}
-                        </td>
+                        <td class="farm-tile {{tile}}" data-open="Plant-Modal" index="{{y}}{{loop.index0}}" id="{{y}}{{loop.index0}}" onclick = "tileSelect('{{y}}{{loop.index0}}')">{{tile}}</td>
                     {% else %}
                         <td class="farm-tile {{tile}}">{{tile}}</td>
                     {% endif %}
