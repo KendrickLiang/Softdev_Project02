@@ -1,7 +1,7 @@
 {% extends "template.html" %}
 {% block title %} CamoFlask {% endblock %}
 {% block content %}
-<body class="body" onload="">
+<body class="body" onload="init('{{noFarm}}')">
 {% endblock %}
 {% block body %}
 {% if noFarm %}
@@ -91,11 +91,5 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             -->
-            </div>
-
-            <script type="text/javascript">
-                onload = init();
-            </script>
-
     {% endif %}
 {% endblock %}

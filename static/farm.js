@@ -233,8 +233,10 @@ var saveMap = function() {
     $.post("/updateMap", dataSent);
 }
 
-var init = function() {
-    findCrops();
-    getWeather();
-    updateTime();
+var init = function(status) {
+    if (status == 'False') {
+        findCrops();
+        getWeather();
+        updateTime();
+    }
 }
