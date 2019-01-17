@@ -25,7 +25,7 @@ A farming simulator in which the user can plant crops in a grid representing the
 - aWhere API
     - Procure an API key [here](https://developer.awhere.com/). Click on the "Get Started" button. Email registration required.
     - This API can be used to provide information about the various crops that the player will be growing.
-    - Warning: This API imposes a cap of 50 requests per hour, and makes a request everytime you transition between pages. Because of this, you may need more than one API & Secret Key pair.
+    - Warning: This API imposes a cap of 20 requests per hour, and makes a request everytime you transition between pages. Because of this, you may need more than one API & Secret Key pair.
 - accuWeather API
     - Procure an API key [here](https://developer.accuweather.com/). Email registration required.
     - API is used to access geographical data of a given location (i.e. city name)
