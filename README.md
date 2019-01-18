@@ -13,10 +13,11 @@ A farming simulator in which the user can plant crops in a grid representing the
     - Enter ` . <path>/<name-of-venv>/bin/activate `  to activate.
 3. Install Dependencies
     - ` pip install -r requirements.txt ` will install all necessary packages into your venv.
-4. Insert API Keys into their respective files in the **2nd line** of each as shown:
+4. Insert API Keys into their respective files in the **double quotes after key** of each as shown:
+    - For aWhere api you can enter at most 5 keys
   ```
-  Insert API key for <INSERT API NAME HERE> in line below:
-  < INSERT API KEY HERE>
+        "key": "",
+        "secret_key": "" <- only for aWhere.json
   ```
 5. Launch with ` python app.py ` in terminal.
 6. Open a new browser window and enter ` localhost:5000 ` into address bar to visit our home page.
