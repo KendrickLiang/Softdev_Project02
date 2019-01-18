@@ -9,7 +9,7 @@
             <div class="top-bar-right">
                 <ul class="dropdown menu" data-dropdown-menu>
                     <li>
-            	       <p> {{cash}} </p>
+                        <button class="button primary" disabled> Cash: <span id="cashAmount">{{cash}}</span> </button>
             	    </li>
             	    <li>
                         <form action="/viewprofile">
@@ -26,19 +26,22 @@
             </div>
             <form  id="textbox" action="/location", method="POST">
                 Farm Name : <input type="text" name="farmName"> <br>
-                Location : <input type="text" name="location"> <br>
+                Location : <input type="text" name="location" placeholder="Enter a city"> <br>
                 Visibility: <input type="text" name="visible" placeholder="0-public, 1-private, or 2-friends only"> <br>
-                <button type="submit"> Create Farm </button>
+                <button class="button primary" type="submit"> Create Farm </button>
             </form>
     {% else %}
         <div class="top-bar">
                 <div class="top-bar-right">
                     <ul class="dropdown menu" data-dropdown-menu>
                     <li>
+                        <span class="text-center" id="save_time"></span>
+                    </li>
+                    <li>
                         <button class="button primary" onclick="saveMap()"> Save </button>
             	    </li>
                     <li>
-            	       <p id="cashAmount"> {{cash}} </p>
+                        <button class="button primary" disabled> Cash: <span id="cashAmount">{{cash}}</span> </button>
             	    </li>
             	    <li>
             	        <form action="/viewprofile">
@@ -56,9 +59,8 @@
 
 
             <h1>
-                {{ message }}
+                Welcome to <span id="nameOfFarm">{{farmName}}</span> owned by {{user}}
                 <span class="text-right" id="time"></span>
-                <span class="text-right" id="save_time"></span>
             </h1>
             <table class="farm">
                 {% set counter = 0 %}
@@ -82,8 +84,8 @@
                 <h1>What crop would you like to plant?</h1>
         	<div class="grid-x grid-margin">
                   {% for crop in cropTypes['crops'] %}
-        	    <div class="small-2 column">
-                    <button class="button primary" data-close onclick = "plant_crop('{{ crop['name'] }}', '{{ crop['id']}}' );">{{ crop['name'] }}</button></div>
+        	         <div class="small-2 column">
+                     <button class="button primary" data-close onclick = "plant_crop('{{ crop['name'] }}', '{{ crop['id']}}' );">{{ crop['name'] }}</button></div>
                     {% endfor %}
         	    </div>
         	<!--

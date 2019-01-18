@@ -16,18 +16,22 @@ var findCrops = function() {
     $.post( "/getCrop", {
     }, function(data) {
         data = JSON.parse(data);
-        console.log(data);
+        //console.log(data);
         list = data['cropList'].split(";");
-        if (list[0] != "")  {
-            for(x = 0; x < list.length; x++) {
+        //console.log(list);
+        for(x = 0; x < list.length; x++) {
+            if (list[x] != "")  {
                 attributes = list[x].split("$?");
-                target = tiles[parseInt(list[0])];
-                target.setAttribute("cropType", list[1]);
-                target.setAttribute("gdd", list[2]);
-                target.setAttribute("gdd_max", list[3]);
-                target.setAttribute("gdd_min", list[4]);
-                target.setAttribute("stages", list[5]);
-                target.setAttribute("onclick", "showInfo('" + list[0] + "')");
+                console.log(attributes);
+                console.log(list[0]);
+                target = tiles[parseInt(attributes[0])];
+                target.setAttribute("index", attributes[0]);
+                target.setAttribute("cropType", attributes[1]);
+                target.setAttribute("gdd", attributes[2]);
+                target.setAttribute("gdd_max", attributes[3]);
+                target.setAttribute("gdd_min", attributes[4]);
+                target.setAttribute("stages", attributes[5]);
+                target.setAttribute("onclick", "showInfo('" + attributes[0] + "')");
                 target.removeAttribute("data-open");
                 addCrop(target);
             }
@@ -51,8 +55,8 @@ var resetTile = function(tile) {
     tile.removeAttribute("gdd_min");
     tile.removeAttribute("stages");
     tile.setAttribute("class", "farm-tile Dirt")
-    tile.setAttribute("onclick", "tileSelect('" + viewing_tile.getAttribute("index") + "')");
-    tile.setAttribute("data-open", "");
+    tile.setAttribute("onclick", "tileSelect('" + tile.getAttribute("index") + "')");
+    tile.setAttribute("data-open", "Plant-Modal");
     removeCrop(tile);
 }
 
@@ -174,11 +178,12 @@ var rainBoost;
 
 var getWeather = function(e) {
     $.post( "/weatherInfo", {
+        "farmName": document.getElementById("nameOfFarm").innerHTML
     }, function(data) {
-        console.log(typeof data);
+        //console.log(typeof data);
         data = JSON.parse(data)['0'];
-        console.log(typeof data);
-        console.log(data);
+        //console.log(typeof data);
+        //console.log(data);
         current_temperature = parseFloat(data['Temperature']['Metric']['Value']);
         if (data['IsDayTime'] == "true") {
             isDay = true;
@@ -195,10 +200,7 @@ var getWeather = function(e) {
 }
 
 var updateCash = function(num) {
-    data = {
-        'cashNum': num
-    }
-    $.post("/updateCash", data)
+    //console.log(document.getElementById('cashAmount').innerHTML);
     document.getElementById('cashAmount').innerHTML = parseInt(document.getElementById('cashAmount').innerHTML) + num;
 }
 
@@ -225,12 +227,16 @@ var saveMap = function() {
             crops[x].getAttribute('gdd_min') + "$?" +
             crops[x].getAttribute('stages') + ";";
     }
-    document.getElementById('save_time').innerHTML = document.getElementById('time').innerHTML
+    document.getElementById('save_time').innerHTML = "Last Updated: " + document.getElementById('time').innerHTML
     dataSent = {
         'map': map,
         'cropsMap': cropListing
     }
     $.post("/updateMap", dataSent);
+    data = {
+        'cashNum': parseInt(document.getElementById('cashAmount').innerHTML)
+    }
+    $.post("/updateCash", data)
 }
 
 var init = function(status) {

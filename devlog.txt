@@ -203,9 +203,14 @@ kendrickL -- 2018-01-16 13:58
 -------------------------------------------------------------
 -removed extraneous dependencies
 =============================================================
-fristL -- 2018-01-__ __:__
+weiwenZ -- 2018-01-17 19:13
 -------------------------------------------------------------
-what you have done
+-- Rework API_KEYS layout
+-- Added manual saving
+-- Added Cash update to homepage
+-- Reset the database
+-- Made the all buttons in location.html and home.html to
+foundation buttons
 =============================================================
 fristL -- 2018-01-__ __:__
 -------------------------------------------------------------

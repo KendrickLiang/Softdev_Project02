@@ -21,7 +21,8 @@ def index():
             return render_template('home.html',
                 farm=silo.getFarm(session['current_user'], silo.getFarmName(session['current_user'])[0][0]),
                 cash = silo.getCash(session['current_user']),
-                message='WELCOME to '+  silo.getFarmName(session['current_user'])[0][0] + ", " + session['current_user'] ,
+                farmName = silo.getFarmName(session['current_user'])[0][0],
+                user = session['current_user'] ,
                 noFarm=False,
                 cropTypes = api.getCropInfo())
     return render_template('login.html', title="Login")
@@ -91,7 +92,7 @@ def plantInfo():
 
 @app.route("/weatherInfo", methods=['POST'])
 def weatherInfo():
-    return json.dumps(api.weatherInfo(session['current_user'], silo.getFarmName(session['current_user'])))
+    return json.dumps(api.weatherInfo(session['current_user'], request.form['farmName']))
 
 @app.route("/updateCash", methods=['POST'])
 def updateCash():

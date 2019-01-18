@@ -138,8 +138,7 @@ def updateMap(user, farm, map):
 def updateCash(num, user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    new_amount = getCash(user) + num
-    c.execute("UPDATE users SET cash = (?) WHERE username = (?);", (new_amount, user,))
+    c.execute("UPDATE users SET cash = (?) WHERE username = (?);", (num, user,))
     db.commit()
     db.close()
     return True
