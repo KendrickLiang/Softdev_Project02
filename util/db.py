@@ -69,7 +69,7 @@ def getFarm(user, farm):
     c = db.cursor()
     c.execute("SELECT map FROM farms where owner = (?) and farm_name = (?);", (user,farm,))
     farm = silo.mapArray(c.fetchone()[0])
-    print("what are you here",farm)
+##    print("what are you here",farm)
     db.commit()
     db.close()
     return farm
@@ -144,7 +144,7 @@ def updateCash(num, user):
     return True
 
 def getLocationKey(user, farm):
-    print(user, farm)
+##    print(user, farm)
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("SELECT location FROM farms where owner = (?) and farm_name = (?);", (user, farm,))

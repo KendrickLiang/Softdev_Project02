@@ -68,8 +68,8 @@ def view():
 def createFarm():
     userInfo = [ request.form['farmName'], request.form['visible'] ]
     results = [ api.getipLocation(), api.searchLocation(request.form['location']) ]
-    for row in results[1]:
-        print(row)
+##    for row in results[1]:
+##        print(row)
     return render_template('location.html', userInput = userInfo, location_query = request.form['location'], location_result = results)
 
 @app.route("/createFarm", methods=['POST'])
@@ -79,10 +79,10 @@ def locationSelection():
 
 @app.route("/plantInfo", methods=['POST'])
 def plantInfo():
-    print("HERE")
+##    print("HERE")
     models = api.getModels()
     cropID = request.form['cropID']
-    print(cropID)
+##    print(cropID)
     for model in models:
         if cropID in model['_links']['awhere:crop'][0]['href']:
             link = model['_links']['self']['href']

@@ -19,7 +19,7 @@ def searchLocation(query):
         keys = json.load(json_file)
     URL = "http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey="
     API_KEY = keys['key']
-    print (query)
+##    print (query)
     URL_STUB = URL + API_KEY + "&q=" + query.replace(" ", "%20").strip()
     return access_info(URL_STUB, {}, None)
 
@@ -92,7 +92,7 @@ def getModelDetails(URI):
     api_key = keys['0']['key']
     api_secret = keys['0']['secret_key']
     api_URL= "https://api.awhere.com/"
-    print(URI)
+##    print(URI)
     URL_STUB = api_URL + URI + "/details"
     auth_token = get_oauth_token(encode_secret_and_key(api_key, api_secret))
     header = {
