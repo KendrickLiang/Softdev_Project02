@@ -154,7 +154,7 @@ var updateTime = function() {
     // Crop UPDATE
     if (true) { // isDay
         for (index = 0; index < crops.length; index++) {
-            crops[index].setAttribute("gdd", parseFloat(crops[index].getAttribute("gdd"))+15);
+            crops[index].setAttribute("gdd", parseFloat(crops[index].getAttribute("gdd"))+current_temperature);
             //gdd = crops[index].getAttribute("gdd");
             //stages = JSON.parse(crops[index].getAttribute('stages'))
             //if (gdd >= 2 * parseInt(stages[stages.length-1]['gddThreshold'])) {
@@ -185,6 +185,7 @@ var getWeather = function(e) {
         //console.log(typeof data);
         //console.log(data);
         current_temperature = parseFloat(data['Temperature']['Metric']['Value']);
+        //console.log(current_temperature);
         if (data['IsDayTime'] == "true") {
             isDay = true;
         } else {
