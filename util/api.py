@@ -19,7 +19,7 @@ def searchLocation(query):
         keys = json.load(json_file)
     URL = "http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey="
     API_KEY = keys['key']
-    print (query)
+    #print (query)
     URL_STUB = URL + API_KEY + "&q=" + query.replace(" ", "%20").strip()
     return access_info(URL_STUB, {}, None)
 

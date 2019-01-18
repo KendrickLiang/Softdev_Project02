@@ -22,8 +22,8 @@ var findCrops = function() {
         for(x = 0; x < list.length; x++) {
             if (list[x] != "")  {
                 attributes = list[x].split("$?");
-                console.log(attributes);
-                console.log(list[0]);
+                //console.log(attributes);
+                //console.log(list[0]);
                 target = tiles[parseInt(attributes[0])];
                 target.setAttribute("index", attributes[0]);
                 target.setAttribute("cropType", attributes[1]);
@@ -61,7 +61,7 @@ var resetTile = function(tile) {
 }
 
 var tileSelect = function(tile_id) {
-    console.log(farm);
+    //console.log(farm);
     num =  parseInt(tile_id,10);
     t = farm[num];
     //console.log(tile_id, num, document.getElementById(tile_id), t);
@@ -71,7 +71,7 @@ var tileSelect = function(tile_id) {
 
 var plant_crop = function(cropName, cropType) {
     if (current_tile != null) {
-        console.log(current_tile);
+        //console.log(current_tile);
         viewing_tile = current_tile;
         viewing_tile.innerHTML = cropName;
         addCrop(viewing_tile);
