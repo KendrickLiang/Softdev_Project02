@@ -43,63 +43,81 @@ def getCropInfo():
     '''
         Returns listing of all crop types provided by awhere.
     '''
+    num = 0
+    listing = ["0","1","2","3","4"]
     with open("keys/aWhere.json") as json_file:
         keys = json.load(json_file)
+    while num < 5:
+        try:
+            api_key = keys[listing[num]]['key']
+            api_secret = keys[listing[num]]['secret_key']
+            api_URL= "https://api.awhere.com/"
+            URI = "v2/agronomics/crops"
+            URL_STUB = api_URL + URI
+            auth_token = get_oauth_token(encode_secret_and_key(api_key, api_secret))
+            header = {
+                "Authorization": "Bearer %s" % auth_token,
+            }
+            data = access_info(URL_STUB, header, None)
 
-    api_key = keys['0']['key']
-    api_secret = keys['0']['secret_key']
-    api_URL= "https://api.awhere.com/"
-    URI = "v2/agronomics/crops"
-    URL_STUB = api_URL + URI
-    auth_token = get_oauth_token(encode_secret_and_key(api_key, api_secret))
-    header = {
-        "Authorization": "Bearer %s" % auth_token,
-    }
-    data = access_info(URL_STUB, header, None)
-    return data
+            return data
+        except:
+            num += 1
+            print("ERROR")
+    return ""
 
 def getModels():
     '''
         Get Model listing
     '''
+    num = 0
+    listing = ["0","1","2","3","4"]
     with open("keys/aWhere.json") as json_file:
         keys = json.load(json_file)
+    while num < 5:
+        try:
+            api_key = keys[listing[num]]['key']
+            api_secret = keys[listing[num]]['secret_key']
+            api_URL= "https://api.awhere.com/"
+            URI = "v2/agronomics/models"
+            URL_STUB = api_URL + URI
+            auth_token = get_oauth_token(encode_secret_and_key(api_key, api_secret))
+            header = {
+                "Authorization": "Bearer %s" % auth_token,
+            }
+            data = access_info(URL_STUB, header, None)
 
-    api_key = keys['0']['key']
-    api_secret = keys['0']['secret_key']
-    api_URL= "https://api.awhere.com/"
-    URI = "v2/agronomics/models"
-    URL_STUB = api_URL + URI
-    auth_token = get_oauth_token(encode_secret_and_key(api_key, api_secret))
-    header = {
-        "Authorization": "Bearer %s" % auth_token,
-    }
-    data = access_info(URL_STUB, header, None)
-    return data['models']
-
-
-
-
-
+            return data['models']
+        except:
+            num += 1
+            print("ERROR")
+    return ""
 
 def getModelDetails(URI):
     '''
         Get a specific models details
     '''
+    num = 0
+    listing = ["0","1","2","3","4"]
     with open("keys/aWhere.json") as json_file:
         keys = json.load(json_file)
-
-    api_key = keys['0']['key']
-    api_secret = keys['0']['secret_key']
-    api_URL= "https://api.awhere.com/"
-    print(URI)
-    URL_STUB = api_URL + URI + "/details"
-    auth_token = get_oauth_token(encode_secret_and_key(api_key, api_secret))
-    header = {
-        "Authorization": "Bearer %s" % auth_token,
-    }
-    data = access_info(URL_STUB, header, None)
-    return data
+    while num < 5:
+        try:
+            api_key = keys[listing[num]]['key']
+            api_secret = keys[listing[num]]['secret_key']
+            api_URL= "https://api.awhere.com/"
+            #print(URI)
+            URL_STUB = api_URL + URI + "/details"
+            auth_token = get_oauth_token(encode_secret_and_key(api_key, api_secret))
+            header = {
+                "Authorization": "Bearer %s" % auth_token,
+            }
+            data = access_info(URL_STUB, header, None)
+            return data
+        except:
+            num += 1
+            print("ERROR")
+    return ""
 
 def encode_secret_and_key(key, secret):
     """
