@@ -84,7 +84,7 @@
                 <h1>What crop would you like to plant?</h1>
         	<div class="grid-x grid-margin">
                   {% for crop in cropTypes['crops'] %}
-        	         <div class="small-2 column">
+        	         <div class="small-3 column">
                      <button class="button primary" data-close onclick = "plant_crop('{{ crop['name'] }}', '{{ crop['id']}}' );">{{ crop['name'] }}</button></div>
                     {% endfor %}
         	    </div>
